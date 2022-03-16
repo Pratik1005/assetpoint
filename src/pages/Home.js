@@ -1,4 +1,5 @@
 import "../styles/home.css";
+import {Link} from "react-router-dom";
 import {IMAGES} from "../images/images";
 import {NavMenu} from "../components/NavMenu";
 import {Footer} from "../components/Footer";
@@ -29,12 +30,12 @@ const Home = () => {
               by top authors
             </h1>
             <div className="hero-btn">
-              <a
-                href="./pages/product-listing/product-listing.html"
+              <Link
+                to="/products"
                 className="btn btn-primary cta-btn"
               >
                 Get Started
-              </a>
+              </Link>
             </div>
           </div>
           <div className="hero-img">
