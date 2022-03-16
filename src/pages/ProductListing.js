@@ -23,7 +23,7 @@ const ProductListing = () => {
                     <p>600</p>
                 </div>
                 <div className="filter-slider">
-                    <input type="range" name="price" className="slider" min="0" max="100" value="50" />
+                    <input type="range" name="price" className="slider" min="0" max="100" defaultValue="50" />
                 </div>
             </div>
             {/* <!-- Checkbox --> */}
@@ -32,15 +32,15 @@ const ProductListing = () => {
                 <div className="category-checkbox">
                     <div className="pd-bottom-md">
                         <input type="checkbox" id="self-help" className="input-mg-right" />
-                        <label for="self-help">Self help</label>
+                        <label htmlFor="self-help">Self help</label>
                     </div>
                     <div className="pd-bottom-md">
                         <input type="checkbox" id="stock" className="input-mg-right" />
-                        <label for="stock">Stock Investing</label>
+                        <label htmlFor="stock">Stock Investing</label>
                     </div>
                     <div className="pd-bottom-md">
                         <input type="checkbox" id="real-estate" className="input-mg-right" />
-                        <label for="real-estate">Real Estate Investing</label>
+                        <label htmlFor="real-estate">Real Estate Investing</label>
                     </div>
                 </div>
             </div>
@@ -50,19 +50,19 @@ const ProductListing = () => {
                 <div className="category-rating">
                     <div className="pd-bottom-md">
                         <input type="radio" name="rating" id="4-star" className="input-mg-right" />
-                        <label for="4-star">4 Stars & above</label>
+                        <label htmlFor="4-star">4 Stars & above</label>
                     </div>
                     <div className="pd-bottom-md">
                         <input type="radio" name="rating" id="3-star" className="input-mg-right" />
-                        <label for="3-star">3 Stars & above</label>
+                        <label htmlFor="3-star">3 Stars & above</label>
                     </div>
                     <div className="pd-bottom-md">
                         <input type="radio" name="rating" id="2-star" className="input-mg-right" />
-                        <label for="2-star">2 Stars & above</label>
+                        <label htmlFor="2-star">2 Stars & above</label>
                     </div>
                     <div className="pd-bottom-md">
                         <input type="radio" name="rating" id="1-star" className="input-mg-right" />
-                        <label for="1-star">1 Stars & above</label>
+                        <label htmlFor="1-star">1 Stars & above</label>
                     </div>
                 </div>
             </div>
@@ -72,11 +72,11 @@ const ProductListing = () => {
                 <div className="category-sort">
                     <div className="pd-bottom-md">
                         <input type="radio" name="sort" id="low" className="input-mg-right" />
-                        <label for="low">Price - Low to High</label>
+                        <label htmlFor="low">Price - Low to High</label>
                     </div>
                     <div className="pd-bottom-md">
                         <input type="radio" name="sort" id="high" className="input-mg-right" />
-                        <label for="high">Price - High to Low</label>
+                        <label htmlFor="high">Price - High to Low</label>
                     </div>
                 </div>
             </div>

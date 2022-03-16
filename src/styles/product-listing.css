@@ -11,6 +11,7 @@ section.product-list-ctn {
 
 /* Filters */
 .product-filter {
+  background-color: var(--clr-white);
   padding: 2rem;
   position: sticky;
   top: 4rem;

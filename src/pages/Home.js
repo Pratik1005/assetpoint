@@ -51,7 +51,7 @@ const Home = () => {
           <h2 className="text-center mg-lg">Featured Categories</h2>
           <div className="category">
             {featuredCategory.map(item => (
-              <FeaturedCategory imgSrc={item.imgLink} title={item.title} />
+              <FeaturedCategory imgSrc={item.imgLink} title={item.title} key={item.title}/>
             ))}
           </div>
         </div>
