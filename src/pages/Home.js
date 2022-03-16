@@ -2,6 +2,7 @@ import "../styles/home.css";
 import {IMAGES} from "../images/images";
 import {NavMenu} from "../components/NavMenu";
 import {Footer} from "../components/Footer";
+import { FeaturedCategory } from "../components/FeaturedCategory";
 const Home = () => {
   return (
     <>
@@ -36,36 +37,9 @@ const Home = () => {
         <div className="category-ctn">
           <h2 className="text-center mg-lg">Featured Categories</h2>
           <div className="category">
-            <div className="category-single">
-              <img
-                className="img-responsive"
-                src={IMAGES.selfHelp}
-                alt="category-self-help"
-              />
-              <div className="image-overlay">
-                <p className="fw-bold">Self Help</p>
-              </div>
-            </div>
-            <div className="category-single">
-              <img
-                className="img-responsive"
-                src={IMAGES.stock}
-                alt="category-stock"
-              />
-              <div className="image-overlay">
-                <p className="fw-semibold">Stock Investing</p>
-              </div>
-            </div>
-            <div className="category-single">
-              <img
-                className="img-responsive"
-                src={IMAGES.realEstate}
-                alt="category-real-estate"
-              />
-              <div className="image-overlay">
-                <p className="fw-bold">Real Estate Invetsing</p>
-              </div>
-            </div>
+            <FeaturedCategory imgSrc={IMAGES.selfHelp} title={"Self Help"} />
+            <FeaturedCategory imgSrc={IMAGES.stock} title={"Stock Investing"} />
+            <FeaturedCategory imgSrc={IMAGES.realEstate} title={"Real Estate Invetsing"} />
           </div>
         </div>
 

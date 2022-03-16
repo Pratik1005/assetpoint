@@ -5,27 +5,27 @@ const Login = () => {
     return (
         <>
         <NavMenu />
-         <section class="form-ctn br-md">
+         <section className="form-ctn br-md">
         <form>
-            <h2 class="text-center mg-bottom-md">Login</h2>
-            <div class="form-control">
-                <label for="email" class="fw-bold">Email address</label>
-                <input type="text" name="eamil" placeholder="name@gmail.com" />
+            <h2 className="text-center mg-bottom-md">Login</h2>
+            <div className="form-control">
+                <label htmlFor="email" className="fw-bold">Email address</label>
+                <input type="text" name="email" placeholder="name@gmail.com" />
             </div>
-            <div class="form-control">
-                <label for="password" class="fw-bold">Password</label>
+            <div className="form-control">
+                <label htmlFor="password" className="fw-bold">Password</label>
                 <input type="password" name="password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
             </div>
-            <div class="form-control">
+            <div className="form-control">
                 <input type="checkbox" name="checkbox" />
-                <label for="checkbox" class="fw-bold">Remember me <Link to="/forgotpassword" class="forgot-pw">Forgot your Password?</Link></label>
+                <label htmlFor="checkbox" className="fw-bold">Remember me <Link to="/forgotpassword" className="forgot-pw">Forgot your Password?</Link></label>
             </div>
-            <div class="form-control">
-                <button class="btn btn-primary">Login</button>
+            <div className="form-control">
+                <button className="btn btn-primary">Login</button>
             </div>
-            <div class="account-toggle fw-bold">
+            <div className="account-toggle fw-bold">
                 <Link to="/signup">
-                    Create New Account <span class="material-icons fw-bold">chevron_right</span>
+                    Create New Account <span className="material-icons fw-bold">chevron_right</span>
                 </Link>
             </div>
         </form>
