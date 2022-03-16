@@ -1,8 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import {Home} from "../pages/Home";
-import {Login} from "../pages/Login";
-import {Signup} from "../pages/Signup";
-import {ForgotPassword} from "../pages/ForgotPassword";
+import {Home, Login, Signup, ForgotPassword} from "../pages/allPages"
 
 const MenuRoutes = () => {
     return (

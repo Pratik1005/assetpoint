@@ -10,27 +10,27 @@ const Signup = () => {
             <h2 className="text-center mg-bottom-md">Signup</h2>
             <div className="form-control">
                 <label htmlFor="first-name" className="fw-bold">First name</label>
-                <input type="text" name="first-name" placeholder="first name" />
+                <input type="text" id="first-name" name="first-name" placeholder="first name" />
             </div>
             <div className="form-control">
                 <label htmlFor="last-name" className="fw-bold">Last name</label>
-                <input type="text" name="last-name" placeholder="last name" />
+                <input type="text" id="last-name" name="last-name" placeholder="last name" />
             </div>
             <div className="form-control">
                 <label htmlFor="email" className="fw-bold">Email address</label>
-                <input type="text" name="email" placeholder="name@gmail.com" />
+                <input type="email" id="email" name="email" placeholder="name@gmail.com" />
             </div>
             <div className="form-control">
                 <label htmlFor="password" className="fw-bold">Password</label>
-                <input type="password" name="password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
+                <input type="password" id="password" name="password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
             </div>
             <div className="form-control">
                 <label htmlFor="confirm-password" className="fw-bold">Confirm password</label>
-                <input type="password" name="confirm-password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
             </div>
             <div className="form-control">
-                <input type="checkbox" name="checkbox" />
-                <label htmlFor="checkbox" className="fw-bold">I accept all Terms & Conditions</label>
+                <input type="checkbox" id="terms-condition" name="checkbox" />
+                <label htmlFor="terms-condition" className="fw-bold">I accept all Terms & Conditions</label>
             </div>
             <div className="form-control">
                 <button className="btn btn-primary">Create New Account</button>

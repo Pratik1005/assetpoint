@@ -10,15 +10,15 @@ const Login = () => {
             <h2 className="text-center mg-bottom-md">Login</h2>
             <div className="form-control">
                 <label htmlFor="email" className="fw-bold">Email address</label>
-                <input type="text" name="email" placeholder="name@gmail.com" />
+                <input type="email" name="email" id="email" placeholder="name@gmail.com" />
             </div>
             <div className="form-control">
                 <label htmlFor="password" className="fw-bold">Password</label>
-                <input type="password" name="password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
+                <input type="password" name="password" id="password" placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;" />
             </div>
             <div className="form-control">
-                <input type="checkbox" name="checkbox" />
-                <label htmlFor="checkbox" className="fw-bold">Remember me <Link to="/forgotpassword" className="forgot-pw">Forgot your Password?</Link></label>
+                <input type="checkbox" id="remember-me" name="checkbox" />
+                <label htmlFor="remember-me" className="fw-bold">Remember me <Link to="/forgotpassword" className="forgot-pw">Forgot your Password?</Link></label>
             </div>
             <div className="form-control">
                 <button className="btn btn-primary">Login</button>

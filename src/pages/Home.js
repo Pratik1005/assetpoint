@@ -4,11 +4,24 @@ import {NavMenu} from "../components/NavMenu";
 import {Footer} from "../components/Footer";
 import { FeaturedCategory } from "../components/FeaturedCategory";
 const Home = () => {
+  const featuredCategory = [
+    {
+      imgLink: IMAGES.selfHelp,
+      title: "Self Help"
+    },
+    {
+      imgLink: IMAGES.stock,
+      title: "Stock Investing"
+    },
+    {
+      imgLink: IMAGES.realEstate,
+      title: "Real Estate Invetsing"
+    }
+  ]
   return (
     <>
       <NavMenu />
       <section className="container">
-        {/* <!-- hero --> */}
         <div className="hero-ctn">
           <div className="hero-txt">
             <h1>
@@ -33,17 +46,15 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <!-- categories --> */}
         <div className="category-ctn">
           <h2 className="text-center mg-lg">Featured Categories</h2>
           <div className="category">
-            <FeaturedCategory imgSrc={IMAGES.selfHelp} title={"Self Help"} />
-            <FeaturedCategory imgSrc={IMAGES.stock} title={"Stock Investing"} />
-            <FeaturedCategory imgSrc={IMAGES.realEstate} title={"Real Estate Invetsing"} />
+            {featuredCategory.map(item => (
+              <FeaturedCategory imgSrc={item.imgLink} title={item.title} />
+            ))}
           </div>
         </div>
 
-        {/* <!-- week book --> */}
         <h2 className="text-center mg-lg">Book of the Week</h2>
         <div className="weekly-book-ctn">
           <div className="weekly-book-img">

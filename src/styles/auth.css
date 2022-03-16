@@ -26,12 +26,14 @@ form {
   padding-bottom: 0.125rem;
 }
 
-.form-control label[for="checkbox"] {
+.form-control label[for="remember-me"],
+.form-control label[for="terms-condition"] {
   display: inline-block;
   padding-left: 0.5rem;
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 0.5rem;
@@ -57,7 +59,7 @@ input:focus {
 }
 
 /* login */
-label[for="checkbox"] a.forgot-pw {
+label[for="remember-me"] a.forgot-pw {
   padding-left: 3rem;
   color: #a78bfa;
 }

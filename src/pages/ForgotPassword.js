@@ -11,7 +11,7 @@ const ForgotPassword = () => {
             <h2 className="text-center mg-bottom-md">Forgot Password</h2>
             <div className="form-control">
                 <label htmlFor="email" className="fw-bold">Email address</label>
-                <input type="text" name="email" placeholder="name@gmail.com" />
+                <input type="text" id="email" name="email" placeholder="name@gmail.com" />
             </div>
             <div className="form-control">
                 <button className="btn btn-primary">Reset Password</button>

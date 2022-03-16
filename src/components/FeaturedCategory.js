@@ -4,7 +4,7 @@ const FeaturedCategory = ({imgSrc, title}) => {
             <img
                 className="img-responsive"
                 src={imgSrc}
-                alt="category-self-help"
+                alt={title}
             />
             <div className="image-overlay">
                 <p className="fw-bold">{title}</p>
