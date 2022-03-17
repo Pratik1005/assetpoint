@@ -16,6 +16,7 @@ export const products = [
     discount: 40,
     rating: 4.8,
     isBestSeller: true,
+    isOutOfStock: false,
     category: "self-help",
   },
   {
@@ -28,6 +29,7 @@ export const products = [
     discount: 39,
     rating: 4.5,
     isBestSeller: false,
+    isOutOfStock: false,
     category: "real-estate",
   },
   {
@@ -40,6 +42,7 @@ export const products = [
     discount: 42,
     rating: 4.2,
     isBestSeller: false,
+    isOutOfStock: false,
     category: "stock-invest",
   },
   {
@@ -52,6 +55,7 @@ export const products = [
     discount: 40,
     rating: 4.5,
     isBestSeller: true,
+    isOutOfStock: false,
     category: "stock-invest",
   },
   {
@@ -64,6 +68,7 @@ export const products = [
     discount: 34,
     rating: 4,
     isBestSeller: false,
+    isOutOfStock: true,
     category: "self-help",
   },
   {
@@ -100,6 +105,7 @@ export const products = [
     discount: 42,
     rating: 4.1,
     isBestSeller: false,
+    isOutOfStock: true,
     category: "self-help",
   },
   {
@@ -112,6 +118,7 @@ export const products = [
     discount: 42,
     rating: 3.5,
     isBestSeller: false,
+    isOutOfStock: false,
     category: "self-help",
   },
 ];

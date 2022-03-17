@@ -1,7 +1,11 @@
 const ProductCard = ({productData}) => {
-  console.log(productData);
   return (
     <>
+      {productData.isOutOfStock && (
+        <div class="card-overlay-ctn">
+          <div class="card-overlay-txt">Out of stock</div>
+        </div>
+      )}
       <img
         className="card-img"
         src={productData.imgSrc}
@@ -15,7 +19,7 @@ const ProductCard = ({productData}) => {
         <span className="material-icons">favorite</span>
       </div>
       <p className="card-subtitle">{productData.author}</p>
-      <div class="badge-rating br-sm mg-sm">
+      <div className="badge-rating br-sm">
         <span>{productData.rating}</span>
         <span className="material-icons rating-fill">star</span>
       </div>
