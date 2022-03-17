@@ -81,8 +81,7 @@ export const products = [
   {
     _id: uuid(),
     imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
-    title:
-      "ART OF HANDLING MONEY AND INVESTMENTS: A Practical Guide to Personal Finances",
+    title: "Art of handling money...",
     author: "by Rajiv K. Tayal",
     oldPrice: 550,
     newPrice: 450,
@@ -94,7 +93,7 @@ export const products = [
   {
     _id: uuid(),
     imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
-    title: "Rich Dads Cashflow Quadrant: Guide to Financial Freedom",
+    title: "Rich Dads Cashflow...",
     author: "by Robert Kiyosaki",
     oldPrice: 550,
     newPrice: 321,
@@ -106,7 +105,7 @@ export const products = [
   {
     _id: uuid(),
     imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
-    title: "Rich Dads Cashflow Quadrant: Guide to Financial Freedom",
+    title: "Rich Dads Cashflow...",
     author: "by Robert Kiyosaki",
     oldPrice: 550,
     newPrice: 321,
