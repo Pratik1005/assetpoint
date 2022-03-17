@@ -32,7 +32,8 @@ const ProductListing = () => {
         {/* <!-- products --> */}
         <div className="products-ctn">
           <h3 className="mg-bottom-lg">
-            Showing All Products <small>(showing 6 products)</small>
+            Showing All Products{" "}
+            <small>(showing {products.length} products)</small>
           </h3>
           <div className="product-grid">
             {loader && <h3>Loading...</h3>}

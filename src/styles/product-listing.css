@@ -86,6 +86,10 @@ label {
   color: #ff1b1b;
 }
 
+.badge-rating {
+  width: fit-content;
+}
+
 .card-vertical-ctn a.btn-primary-outline {
   justify-content: center;
   margin: 0.625rem;

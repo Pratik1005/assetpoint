@@ -15,6 +15,10 @@ const ProductCard = ({productData}) => {
         <span className="material-icons">favorite</span>
       </div>
       <p className="card-subtitle">{productData.author}</p>
+      <div class="badge-rating br-sm mg-sm">
+        <span>{productData.rating}</span>
+        <span className="material-icons rating-fill">star</span>
+      </div>
       <div className="card-pricing">
         <p className="card-price fw-bold">₹{productData.newPrice}</p>
         <p className="card-price-cut">₹{productData.oldPrice}</p>
