@@ -2,8 +2,8 @@ const ProductCard = ({productData}) => {
   return (
     <>
       {productData.isOutOfStock && (
-        <div class="card-overlay-ctn">
-          <div class="card-overlay-txt">Out of stock</div>
+        <div className="card-overlay-ctn">
+          <div className="card-overlay-txt">Out of stock</div>
         </div>
       )}
       <img
