@@ -17,7 +17,7 @@ export const products = [
     rating: 4.8,
     isBestSeller: true,
     isOutOfStock: false,
-    category: "self-help",
+    category: "selfHelp",
   },
   {
     _id: uuid(),
@@ -30,7 +30,7 @@ export const products = [
     rating: 4.5,
     isBestSeller: false,
     isOutOfStock: false,
-    category: "real-estate",
+    category: "realEstate",
   },
   {
     _id: uuid(),
@@ -43,7 +43,7 @@ export const products = [
     rating: 4.2,
     isBestSeller: false,
     isOutOfStock: false,
-    category: "stock-invest",
+    category: "stockInvesting",
   },
   {
     _id: uuid(),
@@ -56,7 +56,7 @@ export const products = [
     rating: 4.5,
     isBestSeller: true,
     isOutOfStock: false,
-    category: "stock-invest",
+    category: "stockInvesting",
   },
   {
     _id: uuid(),
@@ -69,7 +69,7 @@ export const products = [
     rating: 4,
     isBestSeller: false,
     isOutOfStock: true,
-    category: "self-help",
+    category: "selfHelp",
   },
   {
     _id: uuid(),
@@ -81,7 +81,7 @@ export const products = [
     discount: 22,
     rating: 4.3,
     isBestSeller: false,
-    category: "stock-invest",
+    category: "stockInvesting",
   },
   {
     _id: uuid(),
@@ -93,7 +93,7 @@ export const products = [
     discount: 18,
     rating: 4.7,
     isBestSeller: false,
-    category: "self-help",
+    category: "selfHelp",
   },
   {
     _id: uuid(),
@@ -106,7 +106,7 @@ export const products = [
     rating: 4.1,
     isBestSeller: false,
     isOutOfStock: true,
-    category: "self-help",
+    category: "selfHelp",
   },
   {
     _id: uuid(),
@@ -119,6 +119,6 @@ export const products = [
     rating: 3.5,
     isBestSeller: false,
     isOutOfStock: false,
-    category: "self-help",
+    category: "selfHelp",
   },
 ];

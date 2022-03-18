@@ -4,15 +4,17 @@ import {productReducer} from "../reducer/productReducer";
 const ProductContext = createContext(null);
 
 const initialProductState = {
-  category: {selfHelp: false, stockInvest: false, realEstate: false},
+  data: [],
+  price: 1000,
+  category: {selfHelp: false, stockInvesting: false, realEstate: false},
+  rating: 1,
   sortBy: "",
-  rating: "",
 };
 
 const ProductProvider = ({children}) => {
-  const [state, action] = useReducer(productReducer, initialProductState);
+  const [state, dispatch] = useReducer(productReducer, initialProductState);
   return (
-    <ProductContext.Provider value={{state, action}}>
+    <ProductContext.Provider value={{state, dispatch}}>
       {children}
     </ProductContext.Provider>
   );
