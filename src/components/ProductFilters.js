@@ -1,8 +1,55 @@
 import {useProduct} from "../context/product-context";
+import {Category, Rating} from "./input-filters/allInputFilters";
 
 const ProductFilters = ({filterBtn}) => {
   const {state, dispatch} = useProduct();
   const {price, category, rating, sortBy} = state;
+  const categoryData = [
+    {
+      title: "self-help",
+      label: "Self help",
+      isChecked: category.selfHelp,
+      actionType: "SELF_HELP",
+    },
+    {
+      title: "stock",
+      label: "Stock Investing",
+      isChecked: category.stockInvesting,
+      actionType: "STOCK_INVESTING",
+    },
+    {
+      title: "real-estate",
+      label: "Real Estate Investing",
+      isChecked: category.realEstate,
+      actionType: "REAL_ESTATE",
+    },
+  ];
+  const ratingData = [
+    {
+      title: "4-star",
+      label: "4 Stars & above",
+      star: 4,
+      actionType: "FOUR_STAR",
+    },
+    {
+      title: "3-star",
+      label: "3 Stars & above",
+      star: 3,
+      actionType: "THREE_STAR",
+    },
+    {
+      title: "2-star",
+      label: "2 Stars & above",
+      star: 2,
+      actionType: "TWO_STAR",
+    },
+    {
+      title: "1-star",
+      label: "1 Stars & above",
+      star: 1,
+      actionType: "ONE_STAR",
+    },
+  ];
   return (
     <div className={filterBtn ? "product-filter show" : "product-filter"}>
       <div className="filter-head mg-bottom-lg">
@@ -18,16 +65,16 @@ const ProductFilters = ({filterBtn}) => {
       <div className="filter-price mg-bottom-lg">
         <h3 className="mg-bottom-md">Price</h3>
         <div className="slider-value">
-          <p>200</p>
-          <p>400</p>
-          <p>600</p>
+          <p>100</p>
+          <p>500</p>
+          <p>1000</p>
         </div>
         <div className="filter-slider">
           <input
             type="range"
             name="price"
             className="slider"
-            min="200"
+            min="100"
             max="1000"
             value={price}
             onChange={(e) =>
@@ -40,86 +87,22 @@ const ProductFilters = ({filterBtn}) => {
       <div className="filter-category mg-bottom-lg">
         <h3 className="mg-bottom-md">Category</h3>
         <div className="category-checkbox">
-          <div className="pd-bottom-md">
-            <input
-              type="checkbox"
-              id="self-help"
-              className="input-mg-right"
-              checked={category.selfHelp}
-              onChange={() => dispatch({type: "SELF_HELP"})}
-            />
-            <label htmlFor="self-help">Self help</label>
-          </div>
-          <div className="pd-bottom-md">
-            <input
-              type="checkbox"
-              id="stock"
-              className="input-mg-right"
-              checked={category.stockInvesting}
-              onChange={() => dispatch({type: "STOCK_INVESTING"})}
-            />
-            <label htmlFor="stock">Stock Investing</label>
-          </div>
-          <div className="pd-bottom-md">
-            <input
-              type="checkbox"
-              id="real-estate"
-              className="input-mg-right"
-              checked={category.realEstate}
-              onChange={() => dispatch({type: "REAL_ESTATE"})}
-            />
-            <label htmlFor="real-estate">Real Estate Investing</label>
-          </div>
+          {categoryData.map((item) => (
+            <div className="pd-bottom-md" key={item.title}>
+              <Category data={item} />
+            </div>
+          ))}
         </div>
       </div>
       {/* <!-- rating --> */}
       <div className="filter-rating mg-bottom-lg">
         <h3 className="mg-bottom-md">Rating</h3>
         <div className="category-rating">
-          <div className="pd-bottom-md">
-            <input
-              type="radio"
-              name="rating"
-              id="4-star"
-              className="input-mg-right"
-              checked={rating === 4}
-              onChange={() => dispatch({type: "FOUR_STAR"})}
-            />
-            <label htmlFor="4-star">4 Stars & above</label>
-          </div>
-          <div className="pd-bottom-md">
-            <input
-              type="radio"
-              name="rating"
-              id="3-star"
-              className="input-mg-right"
-              checked={rating === 3}
-              onChange={() => dispatch({type: "THREE_STAR"})}
-            />
-            <label htmlFor="3-star">3 Stars & above</label>
-          </div>
-          <div className="pd-bottom-md">
-            <input
-              type="radio"
-              name="rating"
-              id="2-star"
-              className="input-mg-right"
-              checked={rating === 2}
-              onChange={() => dispatch({type: "TWO_STAR"})}
-            />
-            <label htmlFor="2-star">2 Stars & above</label>
-          </div>
-          <div className="pd-bottom-md">
-            <input
-              type="radio"
-              name="rating"
-              id="1-star"
-              className="input-mg-right"
-              checked={rating === 1}
-              onChange={() => dispatch({type: "ONE_STAR"})}
-            />
-            <label htmlFor="1-star">1 Stars & above</label>
-          </div>
+          {ratingData.map((item) => (
+            <div className="pd-bottom-md" key={item.title}>
+              <Rating data={item} />
+            </div>
+          ))}
         </div>
       </div>
       {/* <!-- sortby --> */}

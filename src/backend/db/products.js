@@ -111,7 +111,7 @@ export const products = [
   {
     _id: uuid(),
     imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
-    title: "Rich Dads Cashflow...",
+    title: "Rich Dads Guide to Investing",
     author: "by Robert Kiyosaki",
     oldPrice: 550,
     newPrice: 321,
@@ -120,5 +120,18 @@ export const products = [
     isBestSeller: false,
     isOutOfStock: false,
     category: "selfHelp",
+  },
+  {
+    _id: uuid(),
+    imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
+    title: "The Millionaire Real Estate...",
+    author: "by Gary Keller",
+    oldPrice: 1000,
+    newPrice: 900,
+    discount: 10,
+    rating: 4.4,
+    isBestSeller: false,
+    isOutOfStock: false,
+    category: "realEstate",
   },
 ];
