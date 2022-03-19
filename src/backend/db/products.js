@@ -85,7 +85,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
+    imgSrc: "https://assetpoint.netlify.app/images/book-7.jpg",
     title: "Art of handling money...",
     author: "by Rajiv K. Tayal",
     oldPrice: 550,
@@ -97,7 +97,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
+    imgSrc: "https://assetpoint.netlify.app/images/book-8.jpg",
     title: "Rich Dads Cashflow...",
     author: "by Robert Kiyosaki",
     oldPrice: 550,
@@ -110,7 +110,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
+    imgSrc: "https://assetpoint.netlify.app/images/book-9.jpg",
     title: "Rich Dads Guide to Investing",
     author: "by Robert Kiyosaki",
     oldPrice: 550,
@@ -123,7 +123,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    imgSrc: "https://assetpoint.netlify.app/images/book-6.png",
+    imgSrc: "https://assetpoint.netlify.app/images/book-10.png",
     title: "The Millionaire Real Estate...",
     author: "by Gary Keller",
     oldPrice: 1000,
