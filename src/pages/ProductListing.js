@@ -1,8 +1,10 @@
 import "../styles/product-listing.css";
-import {NavMenu} from "../components/NavMenu";
-import {Footer} from "../components/Footer";
-import {ProductCard} from "../components/ProductCard";
-import {ProductFilters} from "../components/ProductFilters";
+import {
+  NavMenu,
+  Footer,
+  ProductCard,
+  ProductFilters,
+} from "../components/allComponents";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {useProduct} from "../context/product-context";

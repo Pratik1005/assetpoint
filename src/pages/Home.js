@@ -1,24 +1,28 @@
 import "../styles/home.css";
 import {Link} from "react-router-dom";
 import {IMAGES} from "../images/images";
-import {NavMenu} from "../components/NavMenu";
-import {Footer} from "../components/Footer";
-import { FeaturedCategory } from "../components/FeaturedCategory";
+import {NavMenu, Footer, FeaturedCategory} from "../components/allComponents";
+import {useProduct} from "../context/product-context";
+
 const Home = () => {
+  const {dispatch} = useProduct();
   const featuredCategory = [
     {
       imgLink: IMAGES.selfHelp,
-      title: "Self Help"
+      title: "Self Help",
+      category: "FEATURED_SELF_HELP",
     },
     {
       imgLink: IMAGES.stock,
-      title: "Stock Investing"
+      title: "Stock Investing",
+      category: "FEATURED_STOCK_INVESTING",
     },
     {
       imgLink: IMAGES.realEstate,
-      title: "Real Estate Invetsing"
-    }
-  ]
+      title: "Real Estate Invetsing",
+      category: "FEATURED_REAL_ESTATE",
+    },
+  ];
   return (
     <>
       <NavMenu />
@@ -30,10 +34,7 @@ const Home = () => {
               by top authors
             </h1>
             <div className="hero-btn">
-              <Link
-                to="/products"
-                className="btn btn-primary cta-btn"
-              >
+              <Link to="/products" className="btn btn-primary cta-btn">
                 Get Started
               </Link>
             </div>
@@ -50,8 +51,14 @@ const Home = () => {
         <div className="category-ctn">
           <h2 className="text-center mg-lg">Featured Categories</h2>
           <div className="category">
-            {featuredCategory.map(item => (
-              <FeaturedCategory imgSrc={item.imgLink} title={item.title} key={item.title}/>
+            {featuredCategory.map((item) => (
+              <Link
+                to="/products"
+                onClick={() => dispatch({type: item.category})}
+                key={item.title}
+              >
+                <FeaturedCategory imgSrc={item.imgLink} title={item.title} />
+              </Link>
             ))}
           </div>
         </div>

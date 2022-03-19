@@ -39,6 +39,21 @@ const productReducer = (state, action) => {
       return {...state, sortBy: "LOW_TO_HIGH"};
     case "HIGH_TO_LOW":
       return {...state, sortBy: "HIGH_TO_LOW"};
+    case "FEATURED_SELF_HELP":
+      return {
+        ...state,
+        category: {selfHelp: true, stockInvesting: false, realEstate: false},
+      };
+    case "FEATURED_STOCK_INVESTING":
+      return {
+        ...state,
+        category: {selfHelp: false, stockInvesting: true, realEstate: false},
+      };
+    case "FEATURED_REAL_ESTATE":
+      return {
+        ...state,
+        category: {selfHelp: false, stockInvesting: false, realEstate: true},
+      };
     default:
       return state;
   }
