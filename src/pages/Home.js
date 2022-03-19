@@ -58,7 +58,11 @@ const Home = () => {
             {featuredCategory.map((item) => (
               <Link
                 to="/products"
-                onClick={() => dispatch({type: item.category})}
+                onClick={() =>
+                  dispatch({
+                    type: item.category,
+                  })
+                }
                 key={item.title}
               >
                 <FeaturedCategory imgSrc={item.imgLink} title={item.title} />

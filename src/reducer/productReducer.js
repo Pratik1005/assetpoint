@@ -27,18 +27,10 @@ const productReducer = (state, action) => {
         ...state,
         category: {...state.category, realEstate: !state.category.realEstate},
       };
-    case "ONE_STAR":
-      return {...state, rating: 1};
-    case "TWO_STAR":
-      return {...state, rating: 2};
-    case "THREE_STAR":
-      return {...state, rating: 3};
-    case "FOUR_STAR":
-      return {...state, rating: 4};
-    case "LOW_TO_HIGH":
-      return {...state, sortBy: "LOW_TO_HIGH"};
-    case "HIGH_TO_LOW":
-      return {...state, sortBy: "HIGH_TO_LOW"};
+    case "RATING":
+      return {...state, rating: action.payload};
+    case "SORT_BY_LOW_OR_HIGH":
+      return {...state, sortBy: action.payload};
     case "FEATURED_SELF_HELP":
       return {
         ...state,

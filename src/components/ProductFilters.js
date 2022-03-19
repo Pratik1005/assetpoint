@@ -29,25 +29,21 @@ const ProductFilters = ({filterBtn}) => {
       title: "4-star",
       label: "4 Stars & above",
       star: 4,
-      actionType: "FOUR_STAR",
     },
     {
       title: "3-star",
       label: "3 Stars & above",
       star: 3,
-      actionType: "THREE_STAR",
     },
     {
       title: "2-star",
       label: "2 Stars & above",
       star: 2,
-      actionType: "TWO_STAR",
     },
     {
       title: "1-star",
       label: "1 Stars & above",
       star: 1,
-      actionType: "ONE_STAR",
     },
   ];
   return (
@@ -116,7 +112,9 @@ const ProductFilters = ({filterBtn}) => {
               id="low"
               className="input-mg-right"
               checked={sortBy === "LOW_TO_HIGH"}
-              onChange={() => dispatch({type: "LOW_TO_HIGH"})}
+              onChange={() =>
+                dispatch({type: "SORT_BY_LOW_OR_HIGH", payload: "LOW_TO_HIGH"})
+              }
             />
             <label htmlFor="low">Price - Low to High</label>
           </div>
@@ -127,7 +125,9 @@ const ProductFilters = ({filterBtn}) => {
               id="high"
               className="input-mg-right"
               checked={sortBy === "HIGH_TO_LOW"}
-              onChange={() => dispatch({type: "HIGH_TO_LOW"})}
+              onChange={() =>
+                dispatch({type: "SORT_BY_LOW_OR_HIGH", payload: "HIGH_TO_LOW"})
+              }
             />
             <label htmlFor="high">Price - High to Low</label>
           </div>
