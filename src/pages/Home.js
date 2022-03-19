@@ -34,7 +34,11 @@ const Home = () => {
               by top authors
             </h1>
             <div className="hero-btn">
-              <Link to="/products" className="btn btn-primary cta-btn">
+              <Link
+                to="/products"
+                className="btn btn-primary cta-btn"
+                onClick={() => dispatch({type: "CLEAR"})}
+              >
                 Get Started
               </Link>
             </div>

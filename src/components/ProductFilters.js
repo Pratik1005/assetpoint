@@ -1,10 +1,10 @@
 import {useProduct} from "../context/product-context";
 
-const ProductFilters = () => {
+const ProductFilters = ({filterBtn}) => {
   const {state, dispatch} = useProduct();
   const {price, category, rating, sortBy} = state;
   return (
-    <div className="product-filter">
+    <div className={filterBtn ? "product-filter show" : "product-filter"}>
       <div className="filter-head mg-bottom-lg">
         <h3>Filters</h3>
         <span

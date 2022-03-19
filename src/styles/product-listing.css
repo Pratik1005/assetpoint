@@ -105,6 +105,7 @@ button.filter-cta {
   bottom: 2rem;
   box-shadow: var(--light-shadow);
   display: none;
+  z-index: 5;
 }
 
 /* Media queries */
@@ -117,7 +118,7 @@ button.filter-cta {
     width: 100%;
     height: 100vh;
     background-color: var(--clr-white);
-    z-index: 1;
+    z-index: 4;
     transition: var(--transition);
     transform: translate(-100%);
   }

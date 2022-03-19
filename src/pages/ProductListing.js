@@ -18,6 +18,7 @@ import {
 const ProductListing = () => {
   const [loader, setLoader] = useState(true);
   const [products, setProducts] = useState([]);
+  const [filterBtn, setFilterBtn] = useState(false);
   const {state} = useProduct();
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const ProductListing = () => {
 
       <section className="product-list-ctn">
         {/* <!-- filters --> */}
-        <ProductFilters />
+        <ProductFilters filterBtn={filterBtn} />
         {/* <!-- products --> */}
         <div className="products-ctn">
           <h3 className="mg-bottom-lg">
@@ -74,7 +75,10 @@ const ProductListing = () => {
       <Footer />
 
       {/* <!-- Filter floating btn --> */}
-      <button className="btn-float-action filter-cta">
+      <button
+        className="btn-float-action filter-cta"
+        onClick={() => setFilterBtn((prev) => !prev)}
+      >
         <span className="material-icons">filter_alt</span>
       </button>
     </>
