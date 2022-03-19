@@ -47,6 +47,7 @@ section.product-list-ctn {
 
 .filter-slider .slider {
   flex-grow: 1;
+  cursor: pointer;
 }
 
 /* checkbox & rating*/

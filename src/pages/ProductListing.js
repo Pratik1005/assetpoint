@@ -16,14 +16,14 @@ import {
 const ProductListing = () => {
   const [loader, setLoader] = useState(true);
   const [products, setProducts] = useState([]);
-  const {state, dispatch} = useProduct();
+  const {state} = useProduct();
 
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get("/api/products");
         setLoader(false);
-        setProducts(() => response.data.products);
+        setProducts(response.data.products);
       } catch (err) {
         console.log("Products Listing", err);
       }
@@ -35,12 +35,13 @@ const ProductListing = () => {
     productsByPrice,
     state.category
   );
+
   const productsByRating = getProductsByRating(
     productsByCategory,
     state.rating
   );
   const finalProducts = getProductsBySort(productsByRating, state.sortBy);
-  console.log(finalProducts);
+
   return (
     <>
       <NavMenu />
@@ -56,6 +57,9 @@ const ProductListing = () => {
           </h3>
           <div className="product-grid">
             {loader && <h3>Loading...</h3>}
+            {!loader && finalProducts.length === 0 && (
+              <h3>No products to show</h3>
+            )}
             {finalProducts.map((item) => (
               <div className="card-vertical-ctn" key={item.id}>
                 <ProductCard productData={item} />

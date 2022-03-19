@@ -1,16 +1,16 @@
 const getProductsByCategory = (products, category) => {
-  console.log(products);
   let filteredProducts = [];
+  let count = 0;
   for (let categoryName in category) {
     if (category[categoryName]) {
       filteredProducts = filteredProducts.concat(
         [...products].filter((product) => product.category === categoryName)
       );
-      console.log(filteredProducts);
+    } else {
+      count++;
     }
   }
-  console.log(filteredProducts);
-  return filteredProducts ? filteredProducts : products;
+  return count === 3 ? products : filteredProducts;
 };
 
 export {getProductsByCategory};

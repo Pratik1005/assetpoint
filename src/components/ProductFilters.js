@@ -2,11 +2,17 @@ import {useProduct} from "../context/product-context";
 
 const ProductFilters = () => {
   const {state, dispatch} = useProduct();
+  const {price, category, rating, sortBy} = state;
   return (
     <div className="product-filter">
       <div className="filter-head mg-bottom-lg">
         <h3>Filters</h3>
-        <span className="filter-clear">Clear</span>
+        <span
+          className="filter-clear"
+          onClick={() => dispatch({type: "CLEAR"})}
+        >
+          Clear
+        </span>
       </div>
       {/* <!-- Range slider --> */}
       <div className="filter-price mg-bottom-lg">
@@ -23,7 +29,7 @@ const ProductFilters = () => {
             className="slider"
             min="200"
             max="1000"
-            value={state.price}
+            value={price}
             onChange={(e) =>
               dispatch({type: "SORT_BY_PRICE", payload: e.target.value})
             }
@@ -39,6 +45,7 @@ const ProductFilters = () => {
               type="checkbox"
               id="self-help"
               className="input-mg-right"
+              checked={category.selfHelp}
               onChange={() => dispatch({type: "SELF_HELP"})}
             />
             <label htmlFor="self-help">Self help</label>
@@ -48,6 +55,7 @@ const ProductFilters = () => {
               type="checkbox"
               id="stock"
               className="input-mg-right"
+              checked={category.stockInvesting}
               onChange={() => dispatch({type: "STOCK_INVESTING"})}
             />
             <label htmlFor="stock">Stock Investing</label>
@@ -57,6 +65,7 @@ const ProductFilters = () => {
               type="checkbox"
               id="real-estate"
               className="input-mg-right"
+              checked={category.realEstate}
               onChange={() => dispatch({type: "REAL_ESTATE"})}
             />
             <label htmlFor="real-estate">Real Estate Investing</label>
@@ -73,6 +82,7 @@ const ProductFilters = () => {
               name="rating"
               id="4-star"
               className="input-mg-right"
+              checked={rating === 4}
               onChange={() => dispatch({type: "FOUR_STAR"})}
             />
             <label htmlFor="4-star">4 Stars & above</label>
@@ -83,6 +93,7 @@ const ProductFilters = () => {
               name="rating"
               id="3-star"
               className="input-mg-right"
+              checked={rating === 3}
               onChange={() => dispatch({type: "THREE_STAR"})}
             />
             <label htmlFor="3-star">3 Stars & above</label>
@@ -93,6 +104,7 @@ const ProductFilters = () => {
               name="rating"
               id="2-star"
               className="input-mg-right"
+              checked={rating === 2}
               onChange={() => dispatch({type: "TWO_STAR"})}
             />
             <label htmlFor="2-star">2 Stars & above</label>
@@ -103,6 +115,7 @@ const ProductFilters = () => {
               name="rating"
               id="1-star"
               className="input-mg-right"
+              checked={rating === 1}
               onChange={() => dispatch({type: "ONE_STAR"})}
             />
             <label htmlFor="1-star">1 Stars & above</label>
@@ -119,6 +132,7 @@ const ProductFilters = () => {
               name="sort"
               id="low"
               className="input-mg-right"
+              checked={sortBy === "LOW_TO_HIGH"}
               onChange={() => dispatch({type: "LOW_TO_HIGH"})}
             />
             <label htmlFor="low">Price - Low to High</label>
@@ -129,6 +143,7 @@ const ProductFilters = () => {
               name="sort"
               id="high"
               className="input-mg-right"
+              checked={sortBy === "HIGH_TO_LOW"}
               onChange={() => dispatch({type: "HIGH_TO_LOW"})}
             />
             <label htmlFor="high">Price - High to Low</label>

@@ -1,6 +1,7 @@
 const getProductsByRating = (products, rating) => {
-  console.log(products, rating);
-  return [...products].filter((product) => product.rating >= rating);
+  return rating
+    ? [...products].filter((product) => product.rating >= rating)
+    : products;
 };
 
 export {getProductsByRating};

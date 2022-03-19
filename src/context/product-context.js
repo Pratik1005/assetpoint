@@ -4,10 +4,9 @@ import {productReducer} from "../reducer/productReducer";
 const ProductContext = createContext(null);
 
 const initialProductState = {
-  data: [],
   price: 1000,
   category: {selfHelp: false, stockInvesting: false, realEstate: false},
-  rating: 1,
+  rating: "",
   sortBy: "",
 };
 

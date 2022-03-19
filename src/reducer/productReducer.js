@@ -1,7 +1,12 @@
 const productReducer = (state, action) => {
   switch (action.type) {
-    case "INITIAL_DATA":
-      return {...state, data: [...action.payload]};
+    case "CLEAR":
+      return {
+        price: 1000,
+        category: {selfHelp: false, stockInvesting: false, realEstate: false},
+        rating: "",
+        sortBy: "",
+      };
     case "SORT_BY_PRICE":
       return {...state, price: action.payload};
     case "SELF_HELP":
