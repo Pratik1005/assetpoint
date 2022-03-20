@@ -11,10 +11,10 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item._id !== action.payload._id
         ),
         totalItems: state.totalItems - 1,
-        totalPrice: state.totalPrice - action.payload.price,
+        totalPrice: state.totalPrice - action.payload.newPrice,
       };
     default:
       return state;

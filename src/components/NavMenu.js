@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
+import {useCart} from "../context/allContext";
 
 const NavMenu = () => {
+  const {cartState} = useCart();
   return (
     <header>
       <div className="header-container">
@@ -33,7 +35,7 @@ const NavMenu = () => {
                 <Link to="/cart">
                   <span className="material-icons">shopping_cart</span>
                   <span className="badge-icon br-full badge-count badge-count fw-bold">
-                    3
+                    {cartState.totalItems}
                   </span>
                 </Link>
               </div>

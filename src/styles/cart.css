@@ -91,7 +91,9 @@ p.coupon span.material-icons {
 
 .quantity-ctn span.quantity {
   border: 1px solid var(--input-border);
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.625rem;
+  width: 1.875rem;
+  height: 1.875rem;
 }
 
 .horizontal-txt button.btn {

@@ -1,6 +1,19 @@
+import {useCart} from "../context/allContext";
+import {useState} from "react";
+
 const CartProductCard = ({cardData}) => {
   const {imgSrc, title, author, oldPrice, newPrice, discount, rating} =
     cardData;
+  const {cartDispatch} = useCart();
+  const [productCount, setProductCount] = useState(1);
+
+  const handleProductIncrement = () => {
+    setProductCount((prev) => prev + 1);
+  };
+
+  const handleProductDecrement = () => {
+    productCount >= 2 ? setProductCount((prev) => prev - 1) : null;
+  };
   return (
     <>
       <img src={imgSrc} alt="product-image" className="docs-hor-card-img" />
@@ -20,11 +33,28 @@ const CartProductCard = ({cardData}) => {
           <p className="card-price-discount">({discount}% off)</p>
         </div>
         <div className="quantity-ctn">
-          <span className="material-icons br-full">add</span>
-          <span className="quantity">1</span>
-          <span className="material-icons br-full">remove</span>
+          <span
+            className="material-icons br-full"
+            onClick={handleProductIncrement}
+          >
+            add
+          </span>
+          <span className="quantity">{productCount}</span>
+          <span
+            className="material-icons br-full"
+            onClick={handleProductDecrement}
+          >
+            remove
+          </span>
         </div>
-        <button className="btn btn-icon-text-outline">Remove from Cart</button>
+        <button
+          className="btn btn-icon-text-outline"
+          onClick={() =>
+            cartDispatch({type: "REMOVE_FROM_CART", payload: cardData})
+          }
+        >
+          Remove from Cart
+        </button>
       </div>
     </>
   );
