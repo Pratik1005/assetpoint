@@ -1,5 +1,6 @@
 const CartProductCard = ({cardData}) => {
-  const {imgSrc, title, author, oldPrice, newPrice, discount} = cardData;
+  const {imgSrc, title, author, oldPrice, newPrice, discount, rating} =
+    cardData;
   return (
     <>
       <img src={imgSrc} alt="product-image" className="docs-hor-card-img" />
@@ -9,6 +10,10 @@ const CartProductCard = ({cardData}) => {
           <span className="material-icons">favorite</span>
         </div>
         <p className="card-subtitle">{author}</p>
+        <div className="badge-rating br-sm">
+          <span>{rating}</span>
+          <span className="material-icons rating-fill">star</span>
+        </div>
         <div className="card-pricing">
           <p className="card-price fw-bold">₹{newPrice}</p>
           <p className="card-price-cut">₹{oldPrice}</p>
@@ -19,9 +24,7 @@ const CartProductCard = ({cardData}) => {
           <span className="quantity">1</span>
           <span className="material-icons br-full">remove</span>
         </div>
-        <a href="#" className="btn btn-icon-text-outline">
-          Remove from Cart
-        </a>
+        <button className="btn btn-icon-text-outline">Remove from Cart</button>
       </div>
     </>
   );

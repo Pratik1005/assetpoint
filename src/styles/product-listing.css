@@ -91,6 +91,7 @@ label {
   margin: 0.625rem 0.625rem 0;
 }
 
+.card-vertical-ctn button.btn-icon-text,
 .card-vertical-ctn a.btn-primary-outline {
   justify-content: center;
   margin: 0.625rem;

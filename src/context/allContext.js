@@ -1,4 +1,4 @@
-import {ProductProvider} from "./product-context";
-import {CartProvider} from "./cart-context";
+import {ProductProvider, useProduct} from "./product-context";
+import {CartProvider, useCart} from "./cart-context";
 
-export {ProductProvider, CartProvider};
+export {ProductProvider, useProduct, CartProvider, useCart};

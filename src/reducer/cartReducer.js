@@ -5,7 +5,7 @@ const cartReducer = (state, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload],
         totalItems: state.totalItems + 1,
-        totalPrice: state.totalPrice + action.payload.price,
+        totalPrice: state.totalPrice + action.payload.newPrice,
       };
     case "REMOVE_FROM_CART":
       return {

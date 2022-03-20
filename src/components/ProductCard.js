@@ -1,4 +1,14 @@
+import {useState} from "react";
+import {useCart} from "../context/allContext";
+import {Link} from "react-router-dom";
+
 const ProductCard = ({productData}) => {
+  const [addedToCart, setAddedToCart] = useState(false);
+  const {cartState, cartDispatch} = useCart();
+  const handleAddToCart = () => {
+    setAddedToCart((prev) => !prev);
+    cartDispatch({type: "ADD_TO_CART", payload: productData});
+  };
   return (
     <>
       {productData.isOutOfStock && (
@@ -28,10 +38,16 @@ const ProductCard = ({productData}) => {
         <p className="card-price-cut">₹{productData.oldPrice}</p>
         <p className="card-price-discount">({productData.discount}% off)</p>
       </div>
-      <a href="#" className="btn btn-icon-text">
-        <span className="material-icons">shopping_cart</span>
-        Add to cart
-      </a>
+      {addedToCart ? (
+        <Link to="/cart" href="#" className="btn btn-icon-text-outline">
+          Go to cart
+        </Link>
+      ) : (
+        <button className="btn btn-icon-text" onClick={handleAddToCart}>
+          <span className="material-icons">shopping_cart</span>
+          Add to cart
+        </button>
+      )}
     </>
   );
 };
