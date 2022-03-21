@@ -13,7 +13,7 @@ const CartProductCard = ({cardData}) => {
   return (
     <>
       <img src={imgSrc} alt="product-image" className="docs-hor-card-img" />
-      <div className="horizontal-txt">
+      <div className="horizontal-txt pd-xs">
         <div className="card-title">
           <h4>{title}</h4>
           <span className="material-icons">favorite</span>

@@ -66,13 +66,13 @@ p.coupon span.material-icons {
 .cart-items > div {
   background-color: var(--clr-white);
   margin: 0 1rem 2rem;
-  max-width: 28.125rem;
+  max-width: 31.25rem;
   width: 100%;
 }
 
 .card-horizontal-ctn img {
-  width: 9.375rem;
-  height: auto;
+  width: 11.25rem;
+  height: 16.875rem;
 }
 
 .horizontal-txt .quantity-ctn {
