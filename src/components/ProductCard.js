@@ -7,7 +7,16 @@ const ProductCard = ({productData}) => {
   const {cartState, cartDispatch} = useCart();
   const handleAddToCart = () => {
     setAddedToCart((prev) => !prev);
-    cartDispatch({type: "ADD_TO_CART", payload: productData});
+    let currentItemInCart = false;
+    const isProductInCart = () => {
+      cartState.cartItems.forEach((item) =>
+        item._id === productData._id ? (currentItemInCart = true) : null
+      );
+    };
+    isProductInCart();
+    currentItemInCart
+      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
+      : cartDispatch({type: "ADD_TO_CART", payload: productData});
   };
   return (
     <>

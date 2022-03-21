@@ -1,18 +1,14 @@
 import {useCart} from "../context/allContext";
-import {useState} from "react";
 
 const CartProductCard = ({cardData}) => {
-  const {imgSrc, title, author, oldPrice, newPrice, discount, rating} =
+  const {imgSrc, title, author, oldPrice, newPrice, discount, rating, count} =
     cardData;
   const {cartDispatch} = useCart();
-  const [productCount, setProductCount] = useState(1);
-
-  const handleProductIncrement = () => {
-    setProductCount((prev) => prev + 1);
-  };
 
   const handleProductDecrement = () => {
-    productCount >= 2 ? setProductCount((prev) => prev - 1) : null;
+    count >= 2
+      ? cartDispatch({type: "DECREASE_PRODUCT_COUNT", payload: cardData})
+      : null;
   };
   return (
     <>
@@ -35,11 +31,13 @@ const CartProductCard = ({cardData}) => {
         <div className="quantity-ctn">
           <span
             className="material-icons br-full"
-            onClick={handleProductIncrement}
+            onClick={() =>
+              cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: cardData})
+            }
           >
             add
           </span>
-          <span className="quantity">{productCount}</span>
+          <span className="quantity">{count}</span>
           <span
             className="material-icons br-full"
             onClick={handleProductDecrement}
