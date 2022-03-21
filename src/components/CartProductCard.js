@@ -19,10 +19,6 @@ const CartProductCard = ({cardData}) => {
           <span className="material-icons">favorite</span>
         </div>
         <p className="card-subtitle">{author}</p>
-        <div className="badge-rating br-sm">
-          <span>{rating}</span>
-          <span className="material-icons rating-fill">star</span>
-        </div>
         <div className="card-pricing">
           <p className="card-price fw-bold">₹{newPrice}</p>
           <p className="card-price-cut">₹{oldPrice}</p>

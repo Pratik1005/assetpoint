@@ -5,6 +5,10 @@ body {
   background-color: var(--body-bg-color);
 }
 
+section.app-ctn {
+  min-height: calc(100vh - 10rem);
+}
+
 section h2 {
   padding: 2rem 0;
 }
@@ -107,5 +111,22 @@ p.coupon span.material-icons {
   }
   .cart-items > div {
     max-width: 25rem;
+  }
+
+  .cart-title h4 {
+    font-size: 1rem;
+  }
+
+  p.card-subtitle {
+    font-size: 0.5rem;
+  }
+
+  .card-horizontal-ctn img {
+    width: 6.25rem;
+    height: 9.375rem;
+  }
+
+  .cart-items > div {
+    width: 95%;
   }
 }

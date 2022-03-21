@@ -13,7 +13,7 @@ const Cart = () => {
   return (
     <>
       <NavMenu />
-      <section>
+      <section className="app-ctn">
         <h2 className="text-center">Shopping Cart</h2>
         {totalItems > 0 ? (
           <div className="cart-mang-ctn">
@@ -59,7 +59,7 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          <h3>Your cart is empty</h3>
+          <h3 className="text-center">Your cart is empty!</h3>
         )}
       </section>
       <Footer />
