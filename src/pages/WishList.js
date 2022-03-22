@@ -4,19 +4,22 @@ import {useWishList} from "../context/wishlist-context";
 
 const WishList = () => {
   const {wishListState} = useWishList();
-  console.log(wishListState);
   return (
     <>
       <NavMenu />
-      <section>
+      <section className="app-ctn">
         <h2 className="text-center">Wish List</h2>
-        <div className="wishlist-ctn">
-          {wishListState.wishListItems.map((item) => (
-            <div className="card-vertical-ctn" key={item.id}>
-              <WishListCard cardData={item} />
-            </div>
-          ))}
-        </div>
+        {wishListState.wishListItems.length > 0 ? (
+          <div className="wishlist-ctn">
+            {wishListState.wishListItems.map((item) => (
+              <div className="card-vertical-ctn" key={item.id}>
+                <WishListCard cardData={item} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <h3 className="text-center">Your wishlist is empty!</h3>
+        )}
       </section>
       <Footer />
     </>

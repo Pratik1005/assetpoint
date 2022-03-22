@@ -3,10 +3,13 @@ import {useCart, useWishList} from "../context/allContext";
 import {Link} from "react-router-dom";
 
 const ProductCard = ({productData}) => {
-  const {wishListDispatch} = useWishList();
+  const {wishListState, wishListDispatch} = useWishList();
   const [addedToCart, setAddedToCart] = useState(false);
-  const [addedToWishList, setAddedToWishList] = useState(false);
+  // const [addedToWishList, setAddedToWishList] = useState(false);
   const {cartState, cartDispatch} = useCart();
+
+  let addedToWishList = false;
+
   const handleAddToCart = () => {
     setAddedToCart((prev) => !prev);
     let currentItemInCart = false;
@@ -21,11 +24,18 @@ const ProductCard = ({productData}) => {
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
   };
 
+  const isProductInWishList = () => {
+    wishListState.wishListItems.forEach((item) =>
+      item._id === productData._id ? (addedToWishList = true) : null
+    );
+  };
+  isProductInWishList();
+
   const handleAddToWishList = () => {
     addedToWishList
       ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: productData})
       : wishListDispatch({type: "ADD_TO_WISHLIST", payload: productData});
-    setAddedToWishList((prev) => !prev);
+    addedToWishList = !addedToWishList;
   };
   return (
     <>
