@@ -22,12 +22,12 @@ const NavMenu = () => {
             </li>
             <li>
               <div className="badge-ctn mg-sm">
-                <a href="#">
+                <Link to="/wishlist">
                   <span className="material-icons">favorite_border</span>
                   <span className="badge-icon br-full badge-count fw-bold">
                     6
                   </span>
-                </a>
+                </Link>
               </div>
             </li>
             <li>
