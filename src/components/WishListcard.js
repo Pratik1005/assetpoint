@@ -1,10 +1,18 @@
-// import {useWishList} from "../context/wishlist-context";
 import {useWishList, useCart} from "../context/allContext";
+import {isProductInCart} from "../utils/isProductInCart";
 
 const WishListCard = ({cardData}) => {
   const {imgSrc, title, author, oldPrice, newPrice, discount} = cardData;
   const {wishListDispatch} = useWishList();
   const {cartDispatch} = useCart();
+
+  let isAddedToCart = isProductInCart(cardData._id);
+  const handleMoveToCart = () => {
+    wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: cardData});
+    isAddedToCart
+      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: cardData})
+      : cartDispatch({type: "ADD_TO_CART", payload: cardData});
+  };
   return (
     <>
       <img className="card-img" src={imgSrc} alt={title} />
@@ -26,10 +34,7 @@ const WishListCard = ({cardData}) => {
         <p className="card-price-cut">₹{oldPrice}</p>
         <p className="card-price-discount">({discount}% off)</p>
       </div>
-      <button
-        className="btn btn-icon-text"
-        // onClick={cartDispatch({type: "ADD_TO_CART", payload: cardData})}
-      >
+      <button className="btn btn-icon-text" onClick={handleMoveToCart}>
         <span className="material-icons">shopping_cart</span>
         Move to cart
       </button>

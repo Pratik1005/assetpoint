@@ -19,7 +19,7 @@ const Cart = () => {
           <div className="cart-mang-ctn">
             <div className="cart-items">
               {cartItems.map((item) => (
-                <div className="card-horizontal-ctn" key={item.title}>
+                <div className="card-horizontal-ctn" key={item._id}>
                   <CartProductCard cardData={item} />
                 </div>
               ))}

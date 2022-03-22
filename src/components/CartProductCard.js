@@ -1,9 +1,19 @@
-import {useCart} from "../context/allContext";
+import {useCart, useWishList} from "../context/allContext";
+import {isProductInWishList} from "../utils/isProductInWishList";
 
 const CartProductCard = ({cardData}) => {
-  const {imgSrc, title, author, oldPrice, newPrice, discount, rating, count} =
-    cardData;
+  const {imgSrc, title, author, oldPrice, newPrice, discount, count} = cardData;
   const {cartDispatch} = useCart();
+  const {wishListDispatch} = useWishList();
+
+  let isAddedToWishList = isProductInWishList(cardData._id);
+
+  const handleAddToWishList = () => {
+    if (!isAddedToWishList) {
+      wishListDispatch({type: "ADD_TO_WISHLIST", payload: cardData});
+      cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
+    }
+  };
 
   const handleProductDecrement = () => {
     count >= 2
@@ -16,7 +26,14 @@ const CartProductCard = ({cardData}) => {
       <div className="horizontal-txt pd-xs">
         <div className="card-title">
           <h4>{title}</h4>
-          <span className="material-icons">favorite</span>
+          <span
+            className={
+              isAddedToWishList ? "material-icons wishlist" : "material-icons"
+            }
+            onClick={handleAddToWishList}
+          >
+            favorite
+          </span>
         </div>
         <p className="card-subtitle">{author}</p>
         <div className="card-pricing">
