@@ -5,6 +5,7 @@ import {
   Signup,
   ForgotPassword,
   ProductListing,
+  Cart,
 } from "../pages/allPages";
 import Mockman from "mockman-js";
 
@@ -17,6 +18,7 @@ const MenuRoutes = () => {
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/products" element={<ProductListing />} />
       <Route path="/mock" element={<Mockman />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 };

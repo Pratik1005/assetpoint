@@ -1,0 +1,128 @@
+@import "./common.css";
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--body-bg-color);
+}
+
+section.app-ctn {
+  min-height: calc(100vh - 10rem);
+}
+
+section h2 {
+  padding: 2rem 0;
+}
+
+.cart-mang-ctn {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+/* Pricing */
+.cart-mang-ctn .price-ctn {
+  background-color: var(--clr-white);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 25rem;
+  box-shadow: var(--light-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: fit-content;
+}
+
+.price-ctn p.coupon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 1rem;
+}
+
+p.coupon span.material-icons {
+  font-size: 1.25rem;
+}
+
+.price-ctn h3 {
+  padding: 0.625rem 0;
+}
+
+.text-border {
+  border-top: 1px solid var(--txt-gray);
+  border-bottom: 1px solid var(--txt-gray);
+  padding: 0.625rem 0;
+}
+
+.price-ctn .price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+}
+
+.price-ctn .order-btn a {
+  display: block;
+  font-size: 1.25rem;
+}
+
+/* Products */
+.cart-items > div {
+  background-color: var(--clr-white);
+  margin: 0 1rem 2rem;
+  max-width: 31.25rem;
+  width: 100%;
+}
+
+.card-horizontal-ctn img {
+  width: 11.25rem;
+  height: 16.875rem;
+}
+
+.horizontal-txt .quantity-ctn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.625rem;
+}
+
+.quantity-ctn span.material-icons {
+  border: 1px solid var(--input-border);
+  font-size: 1rem;
+  padding: 0.375rem;
+  cursor: pointer;
+}
+
+.quantity-ctn span.quantity {
+  border: 1px solid var(--input-border);
+  padding: 0.25rem 0.625rem;
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+.horizontal-txt button.btn {
+  margin: 0.625rem;
+}
+
+/* Media queries */
+@media screen and (max-width: 800px) {
+  .cart-mang-ctn {
+    gap: 1rem;
+  }
+  .cart-items > div {
+    max-width: 25rem;
+  }
+
+  .cart-title h4 {
+    font-size: 1rem;
+  }
+
+  .card-horizontal-ctn img {
+    width: 6.25rem;
+    height: 9.375rem;
+  }
+
+  .cart-items > div {
+    width: 95%;
+  }
+}
