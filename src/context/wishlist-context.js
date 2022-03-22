@@ -3,11 +3,11 @@ import {wishListReducer} from "../reducer/wishListReducer";
 const WishListContext = createContext(null);
 
 const initialState = {
-  wishListState: [],
+  wishListItems: [],
 };
 
 const WishListProvider = ({children}) => {
-  const {wishListState, wishListDispatch} = useReducer(
+  const [wishListState, wishListDispatch] = useReducer(
     wishListReducer,
     initialState
   );

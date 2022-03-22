@@ -1,9 +1,11 @@
 import {useState} from "react";
-import {useCart} from "../context/allContext";
+import {useCart, useWishList} from "../context/allContext";
 import {Link} from "react-router-dom";
 
 const ProductCard = ({productData}) => {
+  const {wishListDispatch} = useWishList();
   const [addedToCart, setAddedToCart] = useState(false);
+  const [addedToWishList, setAddedToWishList] = useState(false);
   const {cartState, cartDispatch} = useCart();
   const handleAddToCart = () => {
     setAddedToCart((prev) => !prev);
@@ -17,6 +19,13 @@ const ProductCard = ({productData}) => {
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
+  };
+
+  const handleAddToWishList = () => {
+    addedToWishList
+      ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: productData})
+      : wishListDispatch({type: "ADD_TO_WISHLIST", payload: productData});
+    setAddedToWishList((prev) => !prev);
   };
   return (
     <>
@@ -35,7 +44,14 @@ const ProductCard = ({productData}) => {
       )}
       <div className="card-title">
         <h4>{productData.title}</h4>
-        <span className="material-icons">favorite</span>
+        <span
+          className={
+            addedToWishList ? "material-icons wishlist" : "material-icons"
+          }
+          onClick={handleAddToWishList}
+        >
+          favorite
+        </span>
       </div>
       <p className="card-subtitle">{productData.author}</p>
       <div className="badge-rating br-sm">

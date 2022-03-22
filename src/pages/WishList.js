@@ -1,18 +1,21 @@
 import "../styles/wish-list.css";
-import {IMAGES} from "../images/images";
-import {NavMenu, Footer, ProductCard} from "../components/allComponents";
+import {NavMenu, Footer, WishListCard} from "../components/allComponents";
+import {useWishList} from "../context/wishlist-context";
 
 const WishList = () => {
+  const {wishListState} = useWishList();
+  console.log(wishListState);
   return (
     <>
       <NavMenu />
       <section>
         <h2 className="text-center">Wish List</h2>
         <div className="wishlist-ctn">
-          {/* <!-- boook 1 --> */}
-          <div className="card-vertical-ctn">
-            {/* <ProductCard productData={item} /> */}
-          </div>
+          {wishListState.wishListItems.map((item) => (
+            <div className="card-vertical-ctn" key={item.id}>
+              <WishListCard cardData={item} />
+            </div>
+          ))}
         </div>
       </section>
       <Footer />
