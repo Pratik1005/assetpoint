@@ -1,6 +1,6 @@
 import "../styles/wish-list.css";
 import {IMAGES} from "../images/images";
-import {NavMenu, Footer, CartProductCard} from "../components/allComponents";
+import {NavMenu, Footer, ProductCard} from "../components/allComponents";
 
 const WishList = () => {
   return (
@@ -11,7 +11,7 @@ const WishList = () => {
         <div className="wishlist-ctn">
           {/* <!-- boook 1 --> */}
           <div className="card-vertical-ctn">
-            <ProductCard productData={item} />
+            {/* <ProductCard productData={item} /> */}
           </div>
         </div>
       </section>
