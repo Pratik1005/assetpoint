@@ -1,22 +1,29 @@
 import {useState} from "react";
-import {useCart} from "../context/allContext";
+import {useCart, useWishList} from "../context/allContext";
 import {Link} from "react-router-dom";
+import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const ProductCard = ({productData}) => {
+  const {wishListDispatch} = useWishList();
   const [addedToCart, setAddedToCart] = useState(false);
-  const {cartState, cartDispatch} = useCart();
+  const {cartDispatch} = useCart();
+
+  let currentItemInCart = isProductInCart(productData._id);
+
   const handleAddToCart = () => {
     setAddedToCart((prev) => !prev);
-    let currentItemInCart = false;
-    const isProductInCart = () => {
-      cartState.cartItems.forEach((item) =>
-        item._id === productData._id ? (currentItemInCart = true) : null
-      );
-    };
-    isProductInCart();
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
+  };
+
+  let addedToWishList = isProductInWishList(productData._id);
+
+  const handleAddToWishList = () => {
+    addedToWishList
+      ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: productData})
+      : wishListDispatch({type: "ADD_TO_WISHLIST", payload: productData});
+    addedToWishList = !addedToWishList;
   };
   return (
     <>
@@ -35,7 +42,14 @@ const ProductCard = ({productData}) => {
       )}
       <div className="card-title">
         <h4>{productData.title}</h4>
-        <span className="material-icons">favorite</span>
+        <span
+          className={
+            addedToWishList ? "material-icons wishlist" : "material-icons"
+          }
+          onClick={handleAddToWishList}
+        >
+          favorite
+        </span>
       </div>
       <p className="card-subtitle">{productData.author}</p>
       <div className="badge-rating br-sm">

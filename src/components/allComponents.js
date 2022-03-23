@@ -4,6 +4,7 @@ import {NavMenu} from "./NavMenu";
 import {ProductCard} from "./ProductCard";
 import {ProductFilters} from "./ProductFilters";
 import {CartProductCard} from "./CartProductCard";
+import {WishlistedCard} from "./WishlistedCard";
 
 export {
   FeaturedCategory,
@@ -12,4 +13,5 @@ export {
   ProductCard,
   ProductFilters,
   CartProductCard,
+  WishlistedCard,
 };

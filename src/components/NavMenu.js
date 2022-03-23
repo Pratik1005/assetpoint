@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom";
-import {useCart} from "../context/allContext";
+import {useCart, useWishList} from "../context/allContext";
 
 const NavMenu = () => {
+  const {wishListState} = useWishList();
   const {cartState} = useCart();
   return (
     <header>
@@ -22,12 +23,12 @@ const NavMenu = () => {
             </li>
             <li>
               <div className="badge-ctn mg-sm">
-                <a href="#">
+                <Link to="/wishlist">
                   <span className="material-icons">favorite_border</span>
                   <span className="badge-icon br-full badge-count fw-bold">
-                    6
+                    {wishListState.wishListItems.length}
                   </span>
-                </a>
+                </Link>
               </div>
             </li>
             <li>
