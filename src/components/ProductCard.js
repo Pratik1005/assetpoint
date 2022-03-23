@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {isProductInWishList} from "../utils/isProductInWishList";
 
 const ProductCard = ({productData}) => {
-  const {wishListDispatch} = useWishList();
+  const {wishListState, wishListDispatch} = useWishList();
   const [addedToCart, setAddedToCart] = useState(false);
   const {cartState, cartDispatch} = useCart();
 
@@ -22,7 +22,14 @@ const ProductCard = ({productData}) => {
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
   };
 
-  let addedToWishList = isProductInWishList(productData._id);
+  // let addedToWishList = isProductInWishList(productData._id);
+  let addedToWishList = false;
+  const isProductInWishList = () => {
+    wishListState.wishListItems.forEach((item) =>
+      item._id === productData._id ? (addedToWishList = true) : null
+    );
+  };
+  isProductInWishList();
 
   const handleAddToWishList = () => {
     addedToWishList
