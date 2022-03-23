@@ -41,6 +41,14 @@ section.single-product-ctn {
   align-items: center;
 }
 
+.product-info .badge-rating {
+  font-size: 1rem;
+}
+
+.product-info .badge-rating span.rating-fill {
+  font-size: 1.25rem;
+}
+
 .product-info .product-price {
   display: flex;
   align-items: center;

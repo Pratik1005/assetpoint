@@ -59,13 +59,9 @@ const SingleProduct = () => {
               <h2>{product.title}</h2>
             </div>
             <p className="author">{product.author}</p>
-            <div className="product-rating">
+            <div className="badge-rating br-sm">
+              <span>{product.rating}</span>
               <span className="material-icons rating-fill">star</span>
-              <span className="material-icons rating-fill">star</span>
-              <span className="material-icons rating-fill">star</span>
-              <span className="material-icons rating-fill">star</span>
-              <span className="material-icons rating">star</span>
-              <span>( 100 reviews )</span>
             </div>
             <div className="product-price">
               <p className="price fw-bold">₹{product.newPrice}</p>
