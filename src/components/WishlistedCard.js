@@ -1,7 +1,7 @@
 import {useWishList, useCart} from "../context/allContext";
 // import {isProductInCart} from "../utils/isProductInCart";
 
-const WishListCard = ({cardData}) => {
+const WishlistedCard = ({cardData}) => {
   const {imgSrc, title, author, oldPrice, newPrice, discount} = cardData;
   const {wishListDispatch} = useWishList();
   const {cartState, cartDispatch} = useCart();
@@ -49,4 +49,4 @@ const WishListCard = ({cardData}) => {
   );
 };
 
-export {WishListCard};
+export {WishlistedCard};
