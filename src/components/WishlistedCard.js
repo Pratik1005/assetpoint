@@ -1,18 +1,12 @@
 import {useWishList, useCart} from "../context/allContext";
-// import {isProductInCart} from "../utils/isProductInCart";
+import {isProductInCart} from "../utils/isProductInCart";
 
 const WishlistedCard = ({cardData}) => {
   const {imgSrc, title, author, oldPrice, newPrice, discount} = cardData;
   const {wishListDispatch} = useWishList();
   const {cartState, cartDispatch} = useCart();
 
-  let isAddedToCart = false;
-  const isProductInCart = () => {
-    cartState.cartItems.forEach((item) =>
-      item._id === cardData._id ? (isAddedToCart = true) : null
-    );
-  };
-  isProductInCart();
+  let isAddedToCart = isProductInCart(cardData._id);
 
   const handleMoveToCart = () => {
     wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: cardData});

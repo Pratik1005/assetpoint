@@ -1,35 +1,23 @@
 import {useState} from "react";
 import {useCart, useWishList} from "../context/allContext";
 import {Link} from "react-router-dom";
-import {isProductInWishList} from "../utils/isProductInWishList";
+import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const ProductCard = ({productData}) => {
-  const {wishListState, wishListDispatch} = useWishList();
+  const {wishListDispatch} = useWishList();
   const [addedToCart, setAddedToCart] = useState(false);
-  const {cartState, cartDispatch} = useCart();
+  const {cartDispatch} = useCart();
+
+  let currentItemInCart = isProductInCart(productData._id);
 
   const handleAddToCart = () => {
     setAddedToCart((prev) => !prev);
-    let currentItemInCart = false;
-    const isProductInCart = () => {
-      cartState.cartItems.forEach((item) =>
-        item._id === productData._id ? (currentItemInCart = true) : null
-      );
-    };
-    isProductInCart();
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
   };
 
-  // let addedToWishList = isProductInWishList(productData._id);
-  let addedToWishList = false;
-  const isProductInWishList = () => {
-    wishListState.wishListItems.forEach((item) =>
-      item._id === productData._id ? (addedToWishList = true) : null
-    );
-  };
-  isProductInWishList();
+  let addedToWishList = isProductInWishList(productData._id);
 
   const handleAddToWishList = () => {
     addedToWishList
