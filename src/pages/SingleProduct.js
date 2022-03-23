@@ -1,27 +1,47 @@
 import "../styles/single-product.css";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {NavMenu, Footer} from "../components/allComponents";
+import {useCart, useWishList} from "../context/allContext";
+import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const SingleProduct = () => {
   const params = useParams();
-  console.log(params.productId);
   const [loader, setLoader] = useState(true);
   const [product, setProduct] = useState([]);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const {cartDispatch} = useCart();
+  const {wishListDispatch} = useWishList();
 
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(`/api/products/${params.productId}`);
         setLoader(false);
-        console.log(response);
         setProduct(response.data.product);
       } catch (err) {
         console.error("single product", err);
       }
     })();
   }, []);
+
+  let currentItemInCart = isProductInCart(product._id);
+
+  const handleAddToCart = () => {
+    setAddedToCart((prev) => !prev);
+    currentItemInCart
+      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: product})
+      : cartDispatch({type: "ADD_TO_CART", payload: product});
+  };
+
+  let addedToWishList = isProductInWishList(product._id);
+
+  const handleAddToWishList = () => {
+    addedToWishList
+      ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product})
+      : wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
+  };
 
   return (
     <>
@@ -54,14 +74,34 @@ const SingleProduct = () => {
             </div>
             <p>inclusive of all taxes</p>
             <div className="cta-btns">
-              <button className="btn btn-icon-text">
-                <span className="material-icons">shopping_cart</span>
-                Add to cart
-              </button>
-              <button className="btn btn-icon-text-outline">
-                <span className="material-icons">favorite_border</span>
-                Add to wishlist
-              </button>
+              {addedToCart ? (
+                <Link to="/cart" href="#" className="btn btn-icon-text-outline">
+                  Go to cart
+                </Link>
+              ) : (
+                <button className="btn btn-icon-text" onClick={handleAddToCart}>
+                  <span className="material-icons">shopping_cart</span>
+                  Add to cart
+                </button>
+              )}
+
+              {addedToWishList ? (
+                <button
+                  className="btn btn-icon-text-outline"
+                  onClick={handleAddToWishList}
+                >
+                  <span className="material-icons wishlist">favorite</span>
+                  Added to wishlist
+                </button>
+              ) : (
+                <button
+                  className="btn btn-icon-text-outline"
+                  onClick={handleAddToWishList}
+                >
+                  <span className="material-icons">favorite_border</span>
+                  Add to wishlist
+                </button>
+              )}
             </div>
           </div>
         </div>
