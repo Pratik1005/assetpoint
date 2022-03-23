@@ -32,11 +32,13 @@ const ProductCard = ({productData}) => {
           <div className="card-overlay-txt">Out of stock</div>
         </div>
       )}
-      <img
-        className="card-img"
-        src={productData.imgSrc}
-        alt={productData.title}
-      />
+      <Link to={`/product/${productData._id}`}>
+        <img
+          className="card-img"
+          src={productData.imgSrc}
+          alt={productData.title}
+        />
+      </Link>
       {productData.isBestSeller && (
         <span className="card-badge">Best seller</span>
       )}

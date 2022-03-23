@@ -66,6 +66,10 @@ label {
   padding: 3rem 4rem;
 }
 
+.products-ctn .card-title h4 {
+  color: var(--clr-txt-dark);
+}
+
 .products-ctn h3 small {
   font-size: 1rem;
   font-weight: normal;
