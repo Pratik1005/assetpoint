@@ -41,7 +41,9 @@ const ProductCard = ({productData}) => {
         <span className="card-badge">Best seller</span>
       )}
       <div className="card-title">
-        <h4>{productData.title}</h4>
+        <Link to={`/product/${productData._id}`}>
+          <h4>{productData.title}</h4>
+        </Link>
         <span
           className={
             addedToWishList ? "material-icons wishlist" : "material-icons"

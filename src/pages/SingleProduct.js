@@ -2,19 +2,21 @@ import "../styles/single-product.css";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import {useState, useEffect} from "react";
+import {NavMenu, Footer} from "../components/allComponents";
 
 const SingleProduct = () => {
-  const productId = useParams();
+  const params = useParams();
+  console.log(params.productId);
   const [loader, setLoader] = useState(true);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`/api/products/${productId}`);
+        const response = await axios.get(`/api/products/${params.productId}`);
         setLoader(false);
-        console.log(response.product);
-        setProduct(response.product);
+        console.log(response);
+        setProduct(response.data.product);
       } catch (err) {
         console.error("single product", err);
       }
@@ -23,6 +25,7 @@ const SingleProduct = () => {
 
   return (
     <>
+      <NavMenu />
       {loader && <h2>Loading...</h2>}
       <section className="single-product-ctn">
         <div className="product-card">
@@ -102,6 +105,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };
