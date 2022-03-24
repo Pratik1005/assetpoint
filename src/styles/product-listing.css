@@ -66,6 +66,10 @@ label {
   padding: 3rem 4rem;
 }
 
+.products-ctn .card-title h4 {
+  color: var(--clr-txt-dark);
+}
+
 .products-ctn h3 small {
   font-size: 1rem;
   font-weight: normal;
@@ -92,7 +96,7 @@ label {
 }
 
 .card-vertical-ctn button.btn-icon-text,
-.card-vertical-ctn a.btn-primary-outline {
+.card-vertical-ctn a.btn-icon-text-outline {
   justify-content: center;
   margin: 0.625rem;
 }

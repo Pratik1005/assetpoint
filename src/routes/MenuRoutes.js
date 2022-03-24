@@ -7,6 +7,7 @@ import {
   ProductListing,
   Cart,
   WishList,
+  SingleProduct,
 } from "../pages/allPages";
 import Mockman from "mockman-js";
 
@@ -21,6 +22,7 @@ const MenuRoutes = () => {
       <Route path="/mock" element={<Mockman />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/wishlist" element={<WishList />} />
+      <Route path="/product/:productId" element={<SingleProduct />} />
     </Routes>
   );
 };

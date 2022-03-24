@@ -1,0 +1,131 @@
+@import "./common.css";
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--body-bg-color);
+}
+
+section.single-product-ctn {
+  width: 90%;
+  max-width: 1500px;
+  margin: 3rem auto;
+}
+
+.product-card,
+.product-data-ctn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--clr-white);
+  box-shadow: var(--light-shadow);
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.product-card img.product-img {
+  width: 50%;
+  margin: auto;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-info p.author {
+  font-size: 1.25rem;
+}
+
+.product-info .product-rating {
+  display: flex;
+  align-items: center;
+}
+
+.product-info .badge-rating {
+  font-size: 1rem;
+}
+
+.product-info .badge-rating span.rating-fill {
+  font-size: 1.25rem;
+}
+
+.product-info .product-price {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.product-price .price {
+  font-size: 1.5rem;
+}
+
+.product-price .price-cut {
+  text-decoration: line-through;
+  font-size: 1.25rem;
+}
+
+.product-price .price-discount {
+  font-size: 1.25rem;
+}
+
+.product-info .cta-btns {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-icon-text {
+  justify-content: center;
+}
+
+.btn-icon-text-outline {
+  background-color: var(--clr-white);
+  margin: 0;
+}
+
+/* Description */
+.product-data-ctn {
+  margin-top: 3rem;
+}
+
+.product-des p {
+  text-align: justify;
+}
+
+/* media queries */
+@media screen and (max-width: 800px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .product-card,
+  .product-data-ctn {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card img.product-img {
+    width: 80%;
+  }
+
+  .product-info p.author {
+    font-size: 1rem;
+  }
+
+  .product-price .price {
+    font-size: 1.25rem;
+  }
+
+  .product-price .price-cut {
+    text-decoration: line-through;
+    font-size: 1rem;
+  }
+
+  .product-price .price-discount {
+    font-size: 1rem;
+  }
+
+  .cta-btns button {
+    flex-grow: 1;
+  }
+}
