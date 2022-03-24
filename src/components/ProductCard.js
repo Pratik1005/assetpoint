@@ -5,13 +5,11 @@ import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const ProductCard = ({productData}) => {
   const {wishListDispatch} = useWishList();
-  const [addedToCart, setAddedToCart] = useState(false);
   const {cartDispatch} = useCart();
 
   let currentItemInCart = isProductInCart(productData._id);
 
   const handleAddToCart = () => {
-    setAddedToCart((prev) => !prev);
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
