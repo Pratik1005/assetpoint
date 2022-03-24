@@ -96,7 +96,7 @@ label {
 }
 
 .card-vertical-ctn button.btn-icon-text,
-.card-vertical-ctn a.btn-primary-outline {
+.card-vertical-ctn a.btn-icon-text-outline {
   justify-content: center;
   margin: 0.625rem;
 }

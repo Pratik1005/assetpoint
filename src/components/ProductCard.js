@@ -65,7 +65,7 @@ const ProductCard = ({productData}) => {
         <p className="card-price-cut">₹{productData.oldPrice}</p>
         <p className="card-price-discount">({productData.discount}% off)</p>
       </div>
-      {addedToCart ? (
+      {currentItemInCart ? (
         <Link to="/cart" href="#" className="btn btn-icon-text-outline">
           Go to cart
         </Link>

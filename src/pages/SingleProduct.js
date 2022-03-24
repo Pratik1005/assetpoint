@@ -70,7 +70,7 @@ const SingleProduct = () => {
             </div>
             <p>inclusive of all taxes</p>
             <div className="cta-btns">
-              {addedToCart ? (
+              {currentItemInCart ? (
                 <Link to="/cart" href="#" className="btn btn-icon-text-outline">
                   Go to cart
                 </Link>
