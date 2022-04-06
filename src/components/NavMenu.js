@@ -49,17 +49,21 @@ const NavMenu = () => {
             />
             {search.length > 0 && (
               <div className="search-result-ctn br-sm pd-sm">
-                {filterProducts.map((item) => (
-                  <Link to={`/product/${item._id}`} key={item._id}>
-                    <div className="search-item pd-sm">
-                      <img src={item.imgSrc} alt={item.title} />
-                      <div className="product-detail">
-                        <h4 className="pd-bottom-lg">{item.title}</h4>
-                        <p>{item.author}</p>
+                {filterProducts.length > 0 ? (
+                  filterProducts.map((item) => (
+                    <Link to={`/product/${item._id}`} key={item._id}>
+                      <div className="search-item pd-sm">
+                        <img src={item.imgSrc} alt={item.title} />
+                        <div className="product-detail">
+                          <h4 className="pd-bottom-lg">{item.title}</h4>
+                          <p>{item.author}</p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))
+                ) : (
+                  <p>No products found</p>
+                )}
               </div>
             )}
           </div>
