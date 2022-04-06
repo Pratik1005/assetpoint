@@ -1,9 +1,10 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useCart, useWishList} from "../context/allContext";
 
 const NavMenu = () => {
+  const navigate = useNavigate();
   const {wishListState} = useWishList();
   const {cartState} = useCart();
   const [search, setSearch] = useState("");
@@ -24,8 +25,10 @@ const NavMenu = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
     setFilterProducts(
-      products.filter((item) =>
-        item.title.toLowerCase().includes(search.toLowerCase())
+      products.filter(
+        (item) =>
+          item.title.toLowerCase().includes(search.toLowerCase()) &&
+          !item.isOutOfStock
       )
     );
   };
@@ -47,7 +50,7 @@ const NavMenu = () => {
             {search.length > 0 && (
               <div className="search-result-ctn br-sm pd-sm">
                 {filterProducts.map((item) => (
-                  <Link to={`/product/${item._id}`} key={item.id}>
+                  <Link to={`/product/${item._id}`} key={item._id}>
                     <div className="search-item pd-sm">
                       <img src={item.imgSrc} alt={item.title} />
                       <div className="product-detail">
