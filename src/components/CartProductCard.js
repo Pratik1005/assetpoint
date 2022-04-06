@@ -1,3 +1,4 @@
+import {toast} from "react-toastify";
 import {useCart, useWishList} from "../context/allContext";
 import {isProductInWishList} from "../utils/isProductInWishList";
 
@@ -10,15 +11,27 @@ const CartProductCard = ({cardData}) => {
 
   const handleAddToWishList = () => {
     if (!isAddedToWishList) {
+      toast.success("Moved to wishlist");
       wishListDispatch({type: "ADD_TO_WISHLIST", payload: cardData});
       cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
     }
   };
 
+  const handleProductIncrement = () => {
+    toast.success("Incremented product quantity");
+    cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: cardData});
+  };
+
   const handleProductDecrement = () => {
-    count >= 2
-      ? cartDispatch({type: "DECREASE_PRODUCT_COUNT", payload: cardData})
-      : null;
+    if (count >= 2) {
+      toast.success("Decremented product quantity");
+      cartDispatch({type: "DECREASE_PRODUCT_COUNT", payload: cardData});
+    }
+  };
+
+  const handleRemoveFromCart = () => {
+    toast.success("Removed from cart");
+    cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
   };
   return (
     <>
@@ -44,9 +57,7 @@ const CartProductCard = ({cardData}) => {
         <div className="quantity-ctn">
           <span
             className="material-icons br-full"
-            onClick={() =>
-              cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: cardData})
-            }
+            onClick={handleProductIncrement}
           >
             add
           </span>
@@ -60,9 +71,7 @@ const CartProductCard = ({cardData}) => {
         </div>
         <button
           className="btn btn-icon-text-outline"
-          onClick={() =>
-            cartDispatch({type: "REMOVE_FROM_CART", payload: cardData})
-          }
+          onClick={handleRemoveFromCart}
         >
           Remove from Cart
         </button>

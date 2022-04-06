@@ -1,15 +1,16 @@
 import "../styles/single-product.css";
 import axios from "axios";
+import {toast} from "react-toastify";
 import {useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react";
-import {NavMenu, Footer} from "../components/allComponents";
+import {NavMenu, Footer, Loader} from "../components/allComponents";
 import {useCart, useWishList} from "../context/allContext";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const SingleProduct = () => {
   const params = useParams();
   const [loader, setLoader] = useState(true);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const {cartDispatch} = useCart();
   const {wishListDispatch} = useWishList();
 
@@ -23,28 +24,33 @@ const SingleProduct = () => {
         console.error("single product", err);
       }
     })();
-  }, []);
+  }, [params.productId]);
 
-  let currentItemInCart = isProductInCart(product._id);
+  let currentItemInCart = product && isProductInCart(product._id);
 
   const handleAddToCart = () => {
+    toast.success("Added to cart");
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: product})
       : cartDispatch({type: "ADD_TO_CART", payload: product});
   };
 
-  let addedToWishList = isProductInWishList(product._id);
+  let addedToWishList = product && isProductInWishList(product._id);
 
   const handleAddToWishList = () => {
-    addedToWishList
-      ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product})
-      : wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
+    if (addedToWishList) {
+      toast.success("Removed from wishlist");
+      wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product});
+    } else {
+      toast.success("Added to wishlist");
+      wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
+    }
   };
 
-  return (
+  return product ? (
     <>
       <NavMenu />
-      {loader && <h2>Loading...</h2>}
+      {loader && <Loader />}
       <section className="single-product-ctn">
         <div className="product-card">
           <img
@@ -141,6 +147,8 @@ const SingleProduct = () => {
       </section>
       <Footer />
     </>
+  ) : (
+    <></>
   );
 };
 

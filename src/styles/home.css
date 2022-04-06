@@ -1,66 +1,7 @@
-@import "./common.css";
-
-body {
-  font-family: "Inter", sans-serif;
-  background-color: var(--body-bg-color);
-}
-
-header {
-  background-color: var(--clr-white);
-  box-shadow: var(--light-shadow);
-  padding: 0.625rem 0;
-}
-
-.header-container,
 .container {
   width: 90%;
   max-width: 1500px;
   margin: auto;
-}
-
-nav.main-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-nav.main-nav h1.logo {
-  font-family: "Parisienne", cursive;
-  color: var(--clr-primary);
-}
-
-nav.main-nav .search-bar {
-  border: 2px solid var(--light-gray);
-  width: 400px;
-}
-
-nav.main-nav .search-bar span.material-icons {
-  color: var(--badge-offline);
-  padding: 0 0.875rem;
-}
-
-nav.main-nav .search-bar input {
-  border: none;
-}
-
-nav.main-nav .search-bar,
-nav.main-nav ul.right-nav {
-  display: flex;
-  align-items: center;
-}
-
-nav.main-nav ul.right-nav span.material-icons {
-  padding-left: 2rem;
-  cursor: pointer;
-}
-
-.badge-count {
-  width: 1rem;
-  height: 1rem;
-  font-size: 0.75rem;
-  top: -0.375rem;
-  right: -0.375rem;
 }
 
 /* hero */
