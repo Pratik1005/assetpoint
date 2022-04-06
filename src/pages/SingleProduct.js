@@ -10,7 +10,7 @@ import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 const SingleProduct = () => {
   const params = useParams();
   const [loader, setLoader] = useState(true);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const {cartDispatch} = useCart();
   const {wishListDispatch} = useWishList();
 
@@ -24,9 +24,9 @@ const SingleProduct = () => {
         console.error("single product", err);
       }
     })();
-  }, []);
+  }, [params.productId]);
 
-  let currentItemInCart = isProductInCart(product._id);
+  let currentItemInCart = product && isProductInCart(product._id);
 
   const handleAddToCart = () => {
     toast.success("Added to cart");
@@ -35,7 +35,7 @@ const SingleProduct = () => {
       : cartDispatch({type: "ADD_TO_CART", payload: product});
   };
 
-  let addedToWishList = isProductInWishList(product._id);
+  let addedToWishList = product && isProductInWishList(product._id);
 
   const handleAddToWishList = () => {
     if (addedToWishList) {
@@ -50,7 +50,7 @@ const SingleProduct = () => {
     //   : wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
   };
 
-  return (
+  return product ? (
     <>
       <NavMenu />
       {loader && <Loader />}
@@ -150,6 +150,8 @@ const SingleProduct = () => {
       </section>
       <Footer />
     </>
+  ) : (
+    <></>
   );
 };
 
