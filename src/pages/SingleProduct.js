@@ -2,7 +2,7 @@ import "../styles/single-product.css";
 import axios from "axios";
 import {useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react";
-import {NavMenu, Footer} from "../components/allComponents";
+import {NavMenu, Footer, Loader} from "../components/allComponents";
 import {useCart, useWishList} from "../context/allContext";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
@@ -44,7 +44,7 @@ const SingleProduct = () => {
   return (
     <>
       <NavMenu />
-      {loader && <h2>Loading...</h2>}
+      {loader && <Loader />}
       <section className="single-product-ctn">
         <div className="product-card">
           <img

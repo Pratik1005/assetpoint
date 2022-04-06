@@ -4,6 +4,7 @@ import {
   Footer,
   ProductCard,
   ProductFilters,
+  Loader,
 } from "../components/allComponents";
 import axios from "axios";
 import {useEffect, useState} from "react";
@@ -59,7 +60,7 @@ const ProductListing = () => {
             <small>(showing {finalProducts.length} products)</small>
           </h3>
           <div className="product-grid">
-            {loader && <h3>Loading...</h3>}
+            {loader && <Loader />}
             {!loader && finalProducts.length === 0 && (
               <h3>No products to show</h3>
             )}

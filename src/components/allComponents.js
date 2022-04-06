@@ -6,6 +6,7 @@ import {ProductFilters} from "./ProductFilters";
 import {CartProductCard} from "./CartProductCard";
 import {WishlistedCard} from "./WishlistedCard";
 import {ScrollToTop} from "./ScrollToTop";
+import {Loader} from "./Loader";
 
 export {
   FeaturedCategory,
@@ -16,4 +17,5 @@ export {
   CartProductCard,
   WishlistedCard,
   ScrollToTop,
+  Loader,
 };
