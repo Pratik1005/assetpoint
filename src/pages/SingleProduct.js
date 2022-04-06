@@ -1,5 +1,6 @@
 import "../styles/single-product.css";
 import axios from "axios";
+import {toast} from "react-toastify";
 import {useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {NavMenu, Footer, Loader} from "../components/allComponents";
@@ -28,6 +29,7 @@ const SingleProduct = () => {
   let currentItemInCart = isProductInCart(product._id);
 
   const handleAddToCart = () => {
+    toast.success("Added to cart");
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: product})
       : cartDispatch({type: "ADD_TO_CART", payload: product});
@@ -36,9 +38,16 @@ const SingleProduct = () => {
   let addedToWishList = isProductInWishList(product._id);
 
   const handleAddToWishList = () => {
-    addedToWishList
-      ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product})
-      : wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
+    if (addedToWishList) {
+      toast.success("Removed from wishlist");
+      wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product});
+    } else {
+      toast.success("Added to wishlist");
+      wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
+    }
+    // addedToWishList
+    //   ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product})
+    //   : wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
   };
 
   return (

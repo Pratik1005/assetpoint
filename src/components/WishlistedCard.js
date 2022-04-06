@@ -1,3 +1,4 @@
+import {toast} from "react-toastify";
 import {useWishList, useCart} from "../context/allContext";
 import {isProductInCart} from "../utils/isProductInCart";
 
@@ -9,10 +10,16 @@ const WishlistedCard = ({cardData}) => {
   let isAddedToCart = isProductInCart(cardData._id);
 
   const handleMoveToCart = () => {
+    toast.success("Moved to cart");
     wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: cardData});
     isAddedToCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: cardData})
       : cartDispatch({type: "ADD_TO_CART", payload: cardData});
+  };
+
+  const handleWishList = () => {
+    toast.success("Removed from wishlist");
+    wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: cardData});
   };
   return (
     <>
@@ -20,12 +27,7 @@ const WishlistedCard = ({cardData}) => {
 
       <div className="card-title">
         <h4>{title}</h4>
-        <span
-          className="material-icons wishlist"
-          onClick={() =>
-            wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: cardData})
-          }
-        >
+        <span className="material-icons wishlist" onClick={handleWishList}>
           favorite
         </span>
       </div>

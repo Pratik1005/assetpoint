@@ -1,6 +1,6 @@
-import {useState} from "react";
-import {useCart, useWishList} from "../context/allContext";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+import {useCart, useWishList} from "../context/allContext";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const ProductCard = ({productData}) => {
@@ -10,6 +10,7 @@ const ProductCard = ({productData}) => {
   let currentItemInCart = isProductInCart(productData._id);
 
   const handleAddToCart = () => {
+    toast.success("Added to cart");
     currentItemInCart
       ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
       : cartDispatch({type: "ADD_TO_CART", payload: productData});
@@ -18,9 +19,13 @@ const ProductCard = ({productData}) => {
   let addedToWishList = isProductInWishList(productData._id);
 
   const handleAddToWishList = () => {
-    addedToWishList
-      ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: productData})
-      : wishListDispatch({type: "ADD_TO_WISHLIST", payload: productData});
+    if (addedToWishList) {
+      toast.success("Removed from wishlist");
+      wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: productData});
+    } else {
+      toast.success("Added to wishlist");
+      wishListDispatch({type: "ADD_TO_WISHLIST", payload: productData});
+    }
     addedToWishList = !addedToWishList;
   };
   return (
