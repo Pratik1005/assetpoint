@@ -45,9 +45,6 @@ const SingleProduct = () => {
       toast.success("Added to wishlist");
       wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
     }
-    // addedToWishList
-    //   ? wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product})
-    //   : wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
   };
 
   return product ? (
