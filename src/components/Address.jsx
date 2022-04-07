@@ -9,6 +9,7 @@ const Address = () => {
   return (
     <>
       <h3 className="text-center pd-bottom-md">Address</h3>
+      {addressList.length === 0 && <p>No address to show</p>}
       <div className="address-ctn pd-bottom-lg">
         {addressList.map((item) => (
           <div className="address" key={item.id}>
@@ -25,7 +26,12 @@ const Address = () => {
               <button className="btn-float-action">
                 <span class="material-icons">edit</span>
               </button>
-              <button className="btn-float-action">
+              <button
+                className="btn-float-action"
+                onClick={() =>
+                  addressDispatch({type: "DELETE_ADDRESS", payload: item.id})
+                }
+              >
                 <span class="material-icons">delete</span>
               </button>
             </div>
