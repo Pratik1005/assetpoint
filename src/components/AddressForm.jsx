@@ -28,7 +28,7 @@ const AddressForm = ({
 
   return (
     <section className="address-modal">
-      <form className="br-md form-space">
+      <form className="br-md form-space" onSubmit={handleAddressForm}>
         <h3 className="text-center mg-bottom-md">Address</h3>
         <div className="form-control">
           <label htmlFor="country" className="fw-bold">
@@ -176,17 +176,11 @@ const AddressForm = ({
         </div>
         <div className="form-control form-option">
           {isEditMode ? (
-            <button
-              className="btn btn-primary"
-              onClick={(e) => handleAddressForm(e)}
-            >
+            <button type="submit" className="btn btn-primary">
               Save address
             </button>
           ) : (
-            <button
-              className="btn btn-primary"
-              onClick={(e) => handleAddressForm(e)}
-            >
+            <button type="submit" className="btn btn-primary">
               Add address
             </button>
           )}
