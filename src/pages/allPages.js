@@ -7,6 +7,7 @@ import {Cart} from "./Cart";
 import {WishList} from "./WishList";
 import {SingleProduct} from "./SingleProduct";
 import {PageNotFound} from "./404";
+import {UserProfile} from "./UserProfile";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   WishList,
   SingleProduct,
   PageNotFound,
+  UserProfile,
 };

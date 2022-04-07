@@ -1,0 +1,37 @@
+.tab-wrapper {
+    width: 90%;
+    max-width: 500px;
+    margin: 1rem auto;
+    background-color: var(--clr-white);
+    overflow: hidden;
+    box-shadow: var(--light-shadow);
+}
+
+.tab-ctn {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: stretch;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.tab-ctn .tab-item:hover {
+    background-color: var(--clr-primary-light);
+    cursor: pointer;
+}
+
+.tab-item.tab-active {
+    background-color: var(--clr-primary-light);
+    color: var(--clr-primary);
+}
+
+/* address ctn */
+.address .option button {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    border: none;
+    cursor: pointer;
+}
+
+.address .option button:hover {
+    background-color: var(--clr-primary-light);
+}

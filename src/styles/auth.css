@@ -1,20 +1,15 @@
-body {
-  font-family: "Inter", sans-serif;
-  background-color: var(--body-bg-color);
-}
-
-.form-ctn {
-  margin: 4rem auto 0;
-  width: 100%;
-  max-width: 31.25rem;
-  box-shadow: var(--light-shadow);
-}
-
 form {
   background-color: var(--clr-white);
   padding: 2rem 4rem;
   width: 100%;
+  max-width: 31.25rem;
   border-radius: 8px;
+  margin: 4rem auto 0;
+  box-shadow: var(--light-shadow);
+}
+
+section form h2 {
+  padding: 0;
 }
 
 .form-control {
@@ -34,7 +29,8 @@ form {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
   width: 100%;
   padding: 0.5rem;
   font-family: inherit;
@@ -59,9 +55,14 @@ input:focus {
 }
 
 /* login */
-label[for="remember-me"] a.forgot-pw {
+.forgot-pw {
   padding-left: 3rem;
   color: #a78bfa;
+}
+
+/* error */
+.error-msg {
+  color: var(--input-error);
 }
 
 /* logout */
@@ -75,14 +76,39 @@ button.btn-icon-text-outline {
   background-color: var(--clr-white);
 }
 
+/* address form */
+.address-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-overlay-bg);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}
+
+.form-space {
+  margin: 1rem auto;
+}
+
+.form-option {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
 /* media queries */
 @media screen and (max-width: 800px) {
-  nav.main-nav .search-bar {
-    order: 1;
-    flex-grow: 1;
+  form {
+    width: 90%;
+    padding: 1.5rem;
+    overflow-y: auto;
   }
 
-  nav.main-nav ul.right-nav span.material-icons {
-    padding-left: 0;
+  .forgot-pw {
+    display: block;
+    padding: 0;
   }
 }

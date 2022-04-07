@@ -1,6 +1,7 @@
 import {ProductProvider, useProduct} from "./product-context";
 import {CartProvider, useCart} from "./cart-context";
 import {WishListProvider, useWishList} from "./wishlist-context";
+import {AddressProvider, useAddress} from "./address-context";
 
 export {
   ProductProvider,
@@ -9,4 +10,6 @@ export {
   useCart,
   WishListProvider,
   useWishList,
+  AddressProvider,
+  useAddress,
 };
