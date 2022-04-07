@@ -19,6 +19,13 @@ const addressReducer = (state, action) => {
           (item) => item.id !== action.payload
         ),
       };
+    case "EDIT_ADDRESS":
+      return {
+        ...state,
+        addressList: state.addressList.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
+      };
     default:
       return state;
   }

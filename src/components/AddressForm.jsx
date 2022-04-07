@@ -2,39 +2,49 @@ import "../styles/auth.css";
 import {useState} from "react";
 import {useAddress} from "../context/address-context";
 
-const AddressForm = () => {
+const AddressForm = ({
+  addressData,
+  setAddressData,
+  isEditMode,
+  setIsEditMode,
+}) => {
   const {addressState, addressDispatch} = useAddress();
-  const [addressData, setAddressData] = useState({
-    country: "",
-    name: "",
-    contact: "",
-    pinCode: "",
-    flatName: "",
-    area: "",
-    landMark: "",
-    city: "",
-    state: "",
-  });
 
   const handleAddressForm = (e) => {
     e.preventDefault();
-    addressDispatch({type: "ADD_NEW_ADDRESS", payload: addressData});
+    if (isEditMode) {
+      addressDispatch({type: "EDIT_ADDRESS", payload: addressData});
+      setIsEditMode((prev) => !prev);
+    } else {
+      addressDispatch({type: "ADD_NEW_ADDRESS", payload: addressData});
+    }
     addressDispatch({type: "TOGGLE_ADDRESS_FORM"});
+  };
+
+  const handleCancelAddress = () => {
+    addressDispatch({type: "TOGGLE_ADDRESS_FORM"});
+    setIsEditMode((prev) => !prev);
   };
 
   return (
     <section className="address-modal">
       <div className="form-ctn form-space">
-        <form onSubmit={handleAddressForm}>
+        <form>
           <h3 className="text-center mg-bottom-md">Address</h3>
           <div className="form-control">
             <label htmlFor="country" className="fw-bold">
               Country
             </label>
-            <select name="countries">
-              <option value="India">India</option>
-              <option value="Canada">Canada</option>
-              <option value="Germany">Germany</option>
+            <select
+              name="countries"
+              value={addressData.country}
+              onChange={(e) =>
+                setAddressData({...addressData, country: e.target.value})
+              }
+            >
+              <option value="india">India</option>
+              <option value="canada">Canada</option>
+              <option value="germany">Germany</option>
             </select>
           </div>
           <div className="form-control">
@@ -153,19 +163,37 @@ const AddressForm = () => {
             <label htmlFor="area" className="fw-bold">
               State
             </label>
-            <select name="states">
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Karnataka">Karnataka</option>
+            <select
+              name="states"
+              value={addressData.state}
+              onChange={(e) =>
+                setAddressData({...addressData, state: e.target.value})
+              }
+            >
+              <option value="maharashtra">Maharashtra</option>
+              <option value="delhi">Delhi</option>
+              <option value="karnataka">Karnataka</option>
             </select>
           </div>
           <div className="form-control form-option">
-            <button className="btn btn-primary" type="submit">
-              Add address
-            </button>
+            {isEditMode ? (
+              <button
+                className="btn btn-primary"
+                onClick={(e) => handleAddressForm(e)}
+              >
+                Save address
+              </button>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={(e) => handleAddressForm(e)}
+              >
+                Add address
+              </button>
+            )}
             <button
               className="btn btn-icon-text-outline"
-              onClick={() => addressDispatch({type: "TOGGLE_ADDRESS_FORM"})}
+              onClick={handleCancelAddress}
             >
               Cancel
             </button>

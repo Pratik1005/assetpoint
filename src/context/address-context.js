@@ -5,6 +5,18 @@ import {addressReducer} from "../reducer/addressReducer";
 const AddressContext = createContext(null);
 
 const initialState = {
+  initialAddressData: {
+    id: uuid(),
+    country: "india",
+    name: "",
+    contact: "",
+    pinCode: "",
+    flatName: "",
+    area: "",
+    landMark: "",
+    city: "",
+    state: "maharashtra",
+  },
   addressList: [
     {
       id: uuid(),
