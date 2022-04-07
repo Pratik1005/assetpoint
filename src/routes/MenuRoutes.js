@@ -9,6 +9,7 @@ import {
   WishList,
   SingleProduct,
   PageNotFound,
+  UserProfile,
 } from "../pages/allPages";
 import Mockman from "mockman-js";
 
@@ -24,6 +25,7 @@ const MenuRoutes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/wishlist" element={<WishList />} />
       <Route path="/product/:productId" element={<SingleProduct />} />
+      <Route path="/account" element={<UserProfile />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
