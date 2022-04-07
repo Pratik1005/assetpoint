@@ -10,6 +10,7 @@ import {Loader} from "./Loader";
 import {Profile} from "./Profile";
 import {Setting} from "./Setting";
 import {Address} from "./Address";
+import {AddressForm} from "./AddressForm";
 
 export {
   FeaturedCategory,
@@ -24,4 +25,5 @@ export {
   Profile,
   Setting,
   Address,
+  AddressForm,
 };

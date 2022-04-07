@@ -1,11 +1,6 @@
-body {
-  font-family: "Inter", sans-serif;
-  background-color: var(--body-bg-color);
-}
-
 .form-ctn {
   margin: 4rem auto 0;
-  width: 100%;
+  width: 90%;
   max-width: 31.25rem;
   box-shadow: var(--light-shadow);
 }
@@ -34,7 +29,8 @@ form {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
   width: 100%;
   padding: 0.5rem;
   font-family: inherit;
@@ -73,6 +69,29 @@ label[for="remember-me"] a.forgot-pw {
 button.btn-icon-text-outline {
   margin: 0;
   background-color: var(--clr-white);
+}
+
+/* address form */
+.address-modal {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg);
+    display: grid;
+    place-items: center;
+    z-index: 10;
+}
+
+.form-space {
+  margin: 1rem auto;
+}
+
+.form-option {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
 /* media queries */
