@@ -1,6 +1,8 @@
 import "../styles/auth.css";
+import {useAddress} from "../context/address-context";
 
 const AddressForm = () => {
+  const {addressState, addressDispatch} = useAddress();
   return (
     <section className="address-modal">
       <div className="form-ctn form-space">
@@ -95,7 +97,12 @@ const AddressForm = () => {
           </div>
           <div className="form-control form-option">
             <button className="btn btn-primary">Add address</button>
-            <button className="btn btn-icon-text-outline">Cancel</button>
+            <button
+              className="btn btn-icon-text-outline"
+              onClick={() => addressDispatch({type: "TOGGLE_ADDRESS_FORM"})}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

@@ -1,24 +1,11 @@
 import {useState, useEffect} from "react";
 import {v4 as uuid} from "uuid";
 import {AddressForm} from "./AddressForm";
+import {useAddress} from "../context/address-context";
 
 const Address = () => {
-  const [addAddress, setAddAddress] = useState(false);
-  const [addressList, setAddressList] = useState([
-    {
-      id: uuid(),
-      name: "Pratik Devle",
-      flatName: "803/A, Nirmal House",
-      area: "Area 1",
-      landMark: "",
-      city: "Mumbai",
-      pinCode: "400012",
-      state: "Maharashtra",
-      country: "India",
-      contact: "9876543210",
-    },
-  ]);
-
+  const {addressState, addressDispatch} = useAddress();
+  const {addressList, isAddAddress} = addressState;
   return (
     <>
       <h3 className="text-center pd-bottom-md">Address</h3>
@@ -47,11 +34,11 @@ const Address = () => {
       </div>
       <button
         className="btn btn-icon-text"
-        onClick={() => setAddAddress((prev) => !prev)}
+        onClick={() => addressDispatch({type: "TOGGLE_ADDRESS_FORM"})}
       >
         <span class="material-icons">add</span>Add address
       </button>
-      {addAddress && <AddressForm />}
+      {isAddAddress && <AddressForm />}
     </>
   );
 };
