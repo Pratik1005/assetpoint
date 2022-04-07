@@ -4,6 +4,7 @@
     margin: 1rem auto;
     background-color: var(--clr-white);
     overflow: hidden;
+    box-shadow: var(--light-shadow);
 }
 
 .tab-ctn {
