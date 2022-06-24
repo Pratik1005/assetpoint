@@ -69,8 +69,8 @@ const NavMenu = () => {
           </div>
           <ul className="right-nav">
             <li>
-              <Link to="/login" className="link-primary">
-                <span class="material-icons profile">account_circle</span>
+              <Link to="/account" className="link-primary">
+                <span className="material-icons profile">account_circle</span>
               </Link>
             </li>
             <li>

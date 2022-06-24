@@ -51,7 +51,7 @@ const Address = () => {
                 className="btn-float-action"
                 onClick={() => handleEditAddress(item)}
               >
-                <span class="material-icons">edit</span>
+                <span className="material-icons">edit</span>
               </button>
               <button
                 className="btn-float-action"
@@ -59,14 +59,14 @@ const Address = () => {
                   addressDispatch({type: "DELETE_ADDRESS", payload: item.id})
                 }
               >
-                <span class="material-icons">delete</span>
+                <span className="material-icons">delete</span>
               </button>
             </div>
           </div>
         ))}
       </div>
       <button className="btn btn-icon-text" onClick={handleAddAddress}>
-        <span class="material-icons">add</span>Add address
+        <span className="material-icons">add</span>Add address
       </button>
       {isAddAddress && (
         <AddressForm

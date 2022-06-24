@@ -11,6 +11,7 @@ import {Profile} from "./Profile";
 import {Setting} from "./Setting";
 import {Address} from "./Address";
 import {AddressForm} from "./AddressForm";
+import {RequiresAuth} from "./RequiresAuth";
 
 export {
   FeaturedCategory,
@@ -26,4 +27,5 @@ export {
   Setting,
   Address,
   AddressForm,
+  RequiresAuth,
 };

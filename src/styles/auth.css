@@ -14,6 +14,7 @@ section form h2 {
 
 .form-control {
   padding-bottom: 1rem;
+  position: relative;
 }
 
 .form-control label {
@@ -41,6 +42,13 @@ select {
 
 input:focus {
   border-color: var(--txt-dark);
+}
+
+.password-eye {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  cursor: pointer;
 }
 
 .form-control button {
