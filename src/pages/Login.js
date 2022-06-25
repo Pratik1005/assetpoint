@@ -1,7 +1,7 @@
 import "../styles/auth.css";
 import {useState} from "react";
 import {Link, useNavigate, useLocation} from "react-router-dom";
-import {useAuth} from "../context/allContext";
+import {useAuth} from "../context";
 import {NavMenu, Footer} from "../components/allComponents";
 import axios from "axios";
 import {toast} from "react-toastify";

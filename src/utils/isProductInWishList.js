@@ -1,14 +1,8 @@
-import {useWishList} from "../context/wishlist-context";
+import {useUser} from "../context";
 
 const isProductInWishList = (id) => {
-  const {wishListState} = useWishList();
-  let addedToWishList = false;
-
-  wishListState.wishListItems.forEach((item) =>
-    item._id === id ? (addedToWishList = true) : null
-  );
-
-  return addedToWishList;
+  const {userState} = useUser();
+  return userState.wishlist.some((product) => product._id === id);
 };
 
 export {isProductInWishList};

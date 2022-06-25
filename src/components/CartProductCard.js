@@ -1,19 +1,23 @@
 import {toast} from "react-toastify";
-import {useCart, useWishList} from "../context/allContext";
+import {useCart} from "../context/allContext";
+import {useAuth, useUser} from "../context";
 import {isProductInWishList} from "../utils/isProductInWishList";
+import {addToWishlist, removeFromWishlist} from "../services/wishlistService";
 
 const CartProductCard = ({cardData}) => {
   const {imgSrc, title, author, oldPrice, newPrice, discount, count} = cardData;
   const {cartDispatch} = useCart();
-  const {wishListDispatch} = useWishList();
+  const {auth} = useAuth();
+  const {userDispatch} = useUser();
 
   let isAddedToWishList = isProductInWishList(cardData._id);
 
-  const handleAddToWishList = () => {
-    if (!isAddedToWishList) {
-      toast.success("Moved to wishlist");
-      wishListDispatch({type: "ADD_TO_WISHLIST", payload: cardData});
-      cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
+  const handleWishlist = () => {
+    if (isAddedToWishList) {
+      removeFromWishlist(cardData._id, auth.token, userDispatch);
+      // cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
+    } else {
+      addToWishlist(cardData, auth.token, userDispatch);
     }
   };
 
@@ -43,7 +47,7 @@ const CartProductCard = ({cardData}) => {
             className={
               isAddedToWishList ? "material-icons wishlist" : "material-icons"
             }
-            onClick={handleAddToWishList}
+            onClick={handleWishlist}
           >
             favorite
           </span>
