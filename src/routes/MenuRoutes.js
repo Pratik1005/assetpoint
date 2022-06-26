@@ -10,6 +10,7 @@ import {
   SingleProduct,
   PageNotFound,
   UserProfile,
+  Checkout,
 } from "../pages/allPages";
 import {RequiresAuth} from "../components/RequiresAuth";
 
@@ -44,6 +45,14 @@ const MenuRoutes = () => {
         element={
           <RequiresAuth>
             <UserProfile />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <RequiresAuth>
+            <Checkout />
           </RequiresAuth>
         }
       />

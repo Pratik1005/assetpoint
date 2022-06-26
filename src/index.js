@@ -3,11 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import {makeServer} from "./server";
 import {BrowserRouter as Router} from "react-router-dom";
-import {
-  ProductProvider,
-  CartProvider,
-  AddressProvider,
-} from "./context/allContext";
+import {ProductProvider, AddressProvider} from "./context/allContext";
 import {AuthProvider, UserProvider} from "./context";
 // Call make Server
 makeServer();
@@ -17,13 +13,11 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <UserProvider>
-          <CartProvider>
-            <ProductProvider>
-              <AddressProvider>
-                <App />
-              </AddressProvider>
-            </ProductProvider>
-          </CartProvider>
+          <ProductProvider>
+            <AddressProvider>
+              <App />
+            </AddressProvider>
+          </ProductProvider>
         </UserProvider>
       </AuthProvider>
     </Router>

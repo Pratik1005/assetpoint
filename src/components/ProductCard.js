@@ -1,23 +1,17 @@
 import {Link, useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
-import {useCart} from "../context/allContext";
 import {useAuth, useUser} from "../context";
-import {addToWishlist, removeFromWishlist} from "../services/wishlistService";
+import {addToWishlist, removeFromWishlist, addToCart} from "../services";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const ProductCard = ({productData}) => {
-  const {cartDispatch} = useCart();
   const {auth} = useAuth();
-  const {userDispatch} = useUser();
+  const {userDispatch, userState} = useUser();
   const navigate = useNavigate();
 
-  let currentItemInCart = isProductInCart(productData._id);
+  let currentItemInCart = isProductInCart(productData._id, userState.cart);
 
   const handleAddToCart = () => {
-    toast.success("Added to cart");
-    currentItemInCart
-      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
-      : cartDispatch({type: "ADD_TO_CART", payload: productData});
+    addToCart(productData, auth.token, userDispatch);
   };
 
   let addedToWishList = isProductInWishList(productData._id);

@@ -8,6 +8,7 @@ import {WishList} from "./WishList";
 import {SingleProduct} from "./SingleProduct";
 import {PageNotFound} from "./404";
 import {UserProfile} from "./UserProfile";
+import {Checkout} from "./Checkout";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   SingleProduct,
   PageNotFound,
   UserProfile,
+  Checkout,
 };

@@ -1,13 +1,10 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {useCart} from "../context/allContext";
+import {Link} from "react-router-dom";
 import {useUser} from "../context";
 
 const NavMenu = () => {
-  const navigate = useNavigate();
   const {userState} = useUser();
-  const {cartState} = useCart();
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
@@ -89,7 +86,7 @@ const NavMenu = () => {
                 <Link to="/cart">
                   <span className="material-icons">shopping_cart</span>
                   <span className="badge-icon br-full badge-count badge-count fw-bold">
-                    {cartState.totalItems}
+                    {userState.totalItems}
                   </span>
                 </Link>
               </div>

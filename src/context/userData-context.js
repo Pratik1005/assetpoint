@@ -6,6 +6,8 @@ const UserContext = createContext();
 const initialState = {
   wishlist: [],
   cart: [],
+  totalItems: 0,
+  totalPrice: 0,
 };
 
 const UserProvider = ({children}) => {

@@ -1,12 +1,15 @@
-import {toast} from "react-toastify";
-import {useCart} from "../context/allContext";
 import {useAuth, useUser} from "../context";
 import {isProductInWishList} from "../utils/isProductInWishList";
-import {addToWishlist, removeFromWishlist} from "../services/wishlistService";
+import {
+  addToWishlist,
+  removeFromWishlist,
+  removeFromCart,
+  incrementProduct,
+  decrementProduct,
+} from "../services";
 
 const CartProductCard = ({cardData}) => {
-  const {imgSrc, title, author, oldPrice, newPrice, discount, count} = cardData;
-  const {cartDispatch} = useCart();
+  const {imgSrc, title, author, oldPrice, newPrice, discount, qty} = cardData;
   const {auth} = useAuth();
   const {userDispatch} = useUser();
 
@@ -15,27 +18,23 @@ const CartProductCard = ({cardData}) => {
   const handleWishlist = () => {
     if (isAddedToWishList) {
       removeFromWishlist(cardData._id, auth.token, userDispatch);
-      // cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
     } else {
       addToWishlist(cardData, auth.token, userDispatch);
     }
   };
 
   const handleProductIncrement = () => {
-    toast.success("Incremented product quantity");
-    cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: cardData});
+    incrementProduct(cardData, auth.token, userDispatch);
   };
 
   const handleProductDecrement = () => {
-    if (count >= 2) {
-      toast.success("Decremented product quantity");
-      cartDispatch({type: "DECREASE_PRODUCT_COUNT", payload: cardData});
+    if (qty >= 2) {
+      decrementProduct(cardData, auth.token, userDispatch);
     }
   };
 
   const handleRemoveFromCart = () => {
-    toast.success("Removed from cart");
-    cartDispatch({type: "REMOVE_FROM_CART", payload: cardData});
+    removeFromCart(cardData, auth.token, userDispatch);
   };
   return (
     <>
@@ -65,7 +64,7 @@ const CartProductCard = ({cardData}) => {
           >
             add
           </span>
-          <span className="quantity">{count}</span>
+          <span className="quantity">{qty}</span>
           <span
             className="material-icons br-full"
             onClick={handleProductDecrement}

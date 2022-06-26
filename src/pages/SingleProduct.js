@@ -1,20 +1,17 @@
 import "../styles/single-product.css";
 import axios from "axios";
-import {toast} from "react-toastify";
 import {useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {NavMenu, Footer, Loader} from "../components/allComponents";
-import {useCart} from "../context/allContext";
 import {useUser, useAuth} from "../context";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
-import {addToWishlist, removeFromWishlist} from "../services";
+import {addToCart, addToWishlist, removeFromWishlist} from "../services";
 
 const SingleProduct = () => {
   const params = useParams();
   const [loader, setLoader] = useState(true);
   const [product, setProduct] = useState({});
-  const {cartDispatch} = useCart();
-  const {userDispatch} = useUser();
+  const {userState, userDispatch} = useUser();
   const {auth} = useAuth();
 
   useEffect(() => {
@@ -29,13 +26,11 @@ const SingleProduct = () => {
     })();
   }, [params.productId]);
 
-  let currentItemInCart = product && isProductInCart(product._id);
+  let currentItemInCart =
+    product && isProductInCart(product._id, userState.cart);
 
   const handleAddToCart = () => {
-    toast.success("Added to cart");
-    currentItemInCart
-      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: product})
-      : cartDispatch({type: "ADD_TO_CART", payload: product});
+    addToCart(product, auth.token, userDispatch);
   };
 
   let addedToWishList = product && isProductInWishList(product._id);

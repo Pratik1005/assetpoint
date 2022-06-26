@@ -1,5 +1,5 @@
-import { Response } from "miragejs";
-import { formatDate, requiresAuth } from "../utils/authUtils";
+import {Response} from "miragejs";
+import {formatDate, requiresAuth} from "../utils/authUtils";
 
 /**
  * All the routes related to Cart are present here.
@@ -22,8 +22,8 @@ export const getCartItemsHandler = function (schema, request) {
       }
     );
   }
-  const userCart = schema.users.findBy({ _id: userId }).cart;
-  return new Response(200, {}, { cart: userCart });
+  const userCart = schema.users.findBy({_id: userId}).cart;
+  return new Response(200, {}, {cart: userCart});
 };
 
 /**
@@ -44,16 +44,16 @@ export const addItemToCartHandler = function (schema, request) {
         }
       );
     }
-    const userCart = schema.users.findBy({ _id: userId }).cart;
-    const { product } = JSON.parse(request.requestBody);
+    const userCart = schema.users.findBy({_id: userId}).cart;
+    const {product} = JSON.parse(request.requestBody);
     userCart.push({
       ...product,
       createdAt: formatDate(),
       updatedAt: formatDate(),
       qty: 1,
     });
-    this.db.users.update({ _id: userId }, { cart: userCart });
-    return new Response(201, {}, { cart: userCart });
+    this.db.users.update({_id: userId}, {cart: userCart});
+    return new Response(201, {}, {cart: userCart});
   } catch (error) {
     return new Response(
       500,
@@ -82,11 +82,11 @@ export const removeItemFromCartHandler = function (schema, request) {
         }
       );
     }
-    let userCart = schema.users.findBy({ _id: userId }).cart;
+    let userCart = schema.users.findBy({_id: userId}).cart;
     const productId = request.params.productId;
     userCart = userCart.filter((item) => item._id !== productId);
-    this.db.users.update({ _id: userId }, { cart: userCart });
-    return new Response(200, {}, { cart: userCart });
+    this.db.users.update({_id: userId}, {cart: userCart});
+    return new Response(200, {}, {cart: userCart});
   } catch (error) {
     return new Response(
       500,
@@ -117,8 +117,8 @@ export const updateCartItemHandler = function (schema, request) {
         }
       );
     }
-    const userCart = schema.users.findBy({ _id: userId }).cart;
-    const { action } = JSON.parse(request.requestBody);
+    const userCart = schema.users.findBy({_id: userId}).cart;
+    const {action} = JSON.parse(request.requestBody);
     if (action.type === "increment") {
       userCart.forEach((product) => {
         if (product._id === productId) {
@@ -134,8 +134,8 @@ export const updateCartItemHandler = function (schema, request) {
         }
       });
     }
-    this.db.users.update({ _id: userId }, { cart: userCart });
-    return new Response(200, {}, { cart: userCart });
+    this.db.users.update({_id: userId}, {cart: userCart});
+    return new Response(200, {}, {cart: userCart});
   } catch (error) {
     return new Response(
       500,
