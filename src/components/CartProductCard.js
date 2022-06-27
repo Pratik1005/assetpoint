@@ -60,16 +60,16 @@ const CartProductCard = ({cardData}) => {
         <div className="quantity-ctn">
           <span
             className="material-icons br-full"
-            onClick={handleProductIncrement}
+            onClick={handleProductDecrement}
           >
-            add
+            remove
           </span>
           <span className="quantity">{qty}</span>
           <span
             className="material-icons br-full"
-            onClick={handleProductDecrement}
+            onClick={handleProductIncrement}
           >
-            remove
+            add
           </span>
         </div>
         <button

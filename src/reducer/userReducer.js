@@ -38,6 +38,8 @@ const userReducer = (state, action) => {
         totalItems: state.totalItems - 1,
         totalPrice: state.totalPrice - action.payload.price,
       };
+    case USER_ACTIONS.CLEAR_CART:
+      return {...state, cart: [], totalItems: 0, totalPrice: 0};
     default:
       return state;
   }

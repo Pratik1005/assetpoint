@@ -1,12 +1,14 @@
 import {useState} from "react";
+import {useLocation} from "react-router-dom";
 import {AddressForm} from "./AddressForm";
 import {useAddress} from "../context/address-context";
 
-const Address = () => {
+const Address = ({setIsAddressSelected}) => {
   const {addressState, addressDispatch} = useAddress();
   const {initialAddressData, addressList, isAddAddress} = addressState;
   const [addressData, setAddressData] = useState({...initialAddressData});
   const [isEditMode, setIsEditMode] = useState(false);
+  const location = useLocation();
 
   const handleAddAddress = () => {
     setAddressData({...initialAddressData});
@@ -37,7 +39,21 @@ const Address = () => {
       <div className="address-ctn pd-bottom-lg">
         {addressList.map((item) => (
           <div className="address pd-bottom-lg" key={item.id}>
-            <p className="para-md">{item.name}</p>
+            {location.pathname === "/checkout" ? (
+              <div>
+                <input
+                  type="radio"
+                  id={item.name}
+                  name="address"
+                  onChange={() => setIsAddressSelected(true)}
+                />
+                <label htmlFor={item.name} className="para-md address-radio">
+                  {item.name}
+                </label>
+              </div>
+            ) : (
+              <p className="para-md">{item.name}</p>
+            )}
             <p>{item.flatName}</p>
             <p>{item.landMark}</p>
             <p>{item.area}</p>
@@ -46,22 +62,24 @@ const Address = () => {
             </p>
             <p>{item.country}</p>
             <p>Contact: {item.contact}</p>
-            <div className="option">
-              <button
-                className="btn-float-action"
-                onClick={() => handleEditAddress(item)}
-              >
-                <span className="material-icons">edit</span>
-              </button>
-              <button
-                className="btn-float-action"
-                onClick={() =>
-                  addressDispatch({type: "DELETE_ADDRESS", payload: item.id})
-                }
-              >
-                <span className="material-icons">delete</span>
-              </button>
-            </div>
+            {location.pathname === "/account" && (
+              <div className="option">
+                <button
+                  className="btn-float-action"
+                  onClick={() => handleEditAddress(item)}
+                >
+                  <span className="material-icons">edit</span>
+                </button>
+                <button
+                  className="btn-float-action"
+                  onClick={() =>
+                    addressDispatch({type: "DELETE_ADDRESS", payload: item.id})
+                  }
+                >
+                  <span className="material-icons">delete</span>
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>

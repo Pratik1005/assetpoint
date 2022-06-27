@@ -1,0 +1,12 @@
+.address-ctn {
+  background-color: #fff;
+  height: fit-content;
+}
+
+.address-radio {
+  padding-left: 1rem;
+}
+
+.width-full {
+  width: 100%;
+}
