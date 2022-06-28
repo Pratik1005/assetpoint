@@ -101,6 +101,11 @@ button.btn-icon-text-outline {
   margin: 1rem auto;
 }
 
+.address-form {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
 .form-option {
   display: flex;
   gap: 1rem;

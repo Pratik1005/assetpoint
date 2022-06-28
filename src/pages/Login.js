@@ -60,7 +60,7 @@ const Login = () => {
     <>
       <NavMenu />
       <section className="app-ctn">
-        <form className="br-md">
+        <form className="br-md" onSubmit={handleLogin}>
           <h2 className="text-center mg-bottom-md">Login</h2>
           {loginData.error && (
             <p className="error-msg form-control">Invalid credentials</p>
@@ -74,6 +74,7 @@ const Login = () => {
               name="email"
               id="email"
               placeholder="name@gmail.com"
+              required
               value={loginData.email}
               onChange={(e) => handleEmail(e)}
             />
@@ -86,6 +87,7 @@ const Login = () => {
               type={isPasswordVisible ? "text" : "password"}
               name="password"
               id="password"
+              required
               value={loginData.password}
               onChange={(e) => handlePassword(e)}
               placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;"
@@ -107,9 +109,7 @@ const Login = () => {
             </Link>
           </div>
           <div className="form-control">
-            <button className="btn btn-primary" onClick={(e) => handleLogin(e)}>
-              Login
-            </button>
+            <button className="btn btn-primary">Login</button>
           </div>
           <div className="form-control">
             <button

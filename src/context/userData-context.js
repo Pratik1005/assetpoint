@@ -8,6 +8,7 @@ const initialState = {
   cart: [],
   totalItems: 0,
   totalPrice: 0,
+  isMenuVisible: false,
 };
 
 const UserProvider = ({children}) => {

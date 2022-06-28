@@ -40,6 +40,10 @@ const userReducer = (state, action) => {
       };
     case USER_ACTIONS.CLEAR_CART:
       return {...state, cart: [], totalItems: 0, totalPrice: 0};
+    case USER_ACTIONS.TOGGLE_MOBILE_MENU:
+      return {...state, isMenuVisible: !state.isMenuVisible};
+    case USER_ACTIONS.HIDE_MOBILE_MENU:
+      return {...state, isMenuVisible: false};
     default:
       return state;
   }
