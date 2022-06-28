@@ -22,12 +22,12 @@ const SearchBar = () => {
     })();
   }, []);
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
+  const handleSearch = (searchQuery) => {
+    setSearch(searchQuery);
     setFilterProducts(
       products.filter(
         (item) =>
-          item.title.toLowerCase().includes(search.toLowerCase()) &&
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
           !item.isOutOfStock
       )
     );
@@ -39,7 +39,7 @@ const SearchBar = () => {
         type="text"
         placeholder="search"
         value={search}
-        onChange={(e) => handleSearch(e)}
+        onChange={(e) => handleSearch(e.target.value)}
       />
       {search.length > 0 && (
         <div className="search-result-ctn br-sm pd-sm">
