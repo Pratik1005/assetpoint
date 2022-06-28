@@ -43,7 +43,6 @@ const Checkout = () => {
         name: "Asset Point",
         description: "Test Transaction",
         image: "",
-        // order_id: "order_Jm5o8lXaCW9od4",
         handler: async (response) => {
           userDispatch({type: USER_ACTIONS.CLEAR_CART});
           toast.success("The payment was successfull");
