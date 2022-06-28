@@ -1,11 +1,11 @@
 import "../styles/cart.css";
-import {NavMenu, Footer} from "../components/allComponents";
-import {useCart} from "../context/allContext";
-import {CartProductCard} from "../components/allComponents";
+import {Link} from "react-router-dom";
+import {NavMenu, Footer, CartProductCard} from "../components/allComponents";
+import {useUser} from "../context";
 
 const Cart = () => {
-  const {cartState} = useCart();
-  const {cartItems, totalItems, totalPrice} = cartState;
+  const {userState} = useUser();
+  const {cart, totalItems, totalPrice} = userState;
   let discount = 30 * totalItems;
   let deliveryCharge = totalPrice >= 500 ? 0 : 100;
   let couponDiscount = 50;
@@ -18,16 +18,13 @@ const Cart = () => {
         {totalItems > 0 ? (
           <div className="cart-mang-ctn">
             <div className="cart-items">
-              {cartItems.map((item) => (
+              {cart.map((item) => (
                 <div className="card-horizontal-ctn" key={item._id}>
                   <CartProductCard cardData={item} />
                 </div>
               ))}
             </div>
             <div className="price-ctn br-sm">
-              <p className="coupon">
-                <span className="material-icons">local_offer</span> Apply Coupon
-              </p>
               <h3 className="text-center text-border">Price Details</h3>
               <div className="price-row">
                 <p>Price ({totalItems} items)</p>
@@ -52,9 +49,9 @@ const Cart = () => {
                 </p>
               </div>
               <div className="order-btn">
-                <a href="#" className="btn btn-primary text-center">
-                  Place Order
-                </a>
+                <Link to="/checkout" className="btn btn-primary text-center">
+                  Proceed to buy
+                </Link>
               </div>
             </div>
           </div>

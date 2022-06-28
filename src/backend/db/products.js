@@ -7,7 +7,7 @@ import {v4 as uuid} from "uuid";
 
 export const products = [
   {
-    _id: uuid(),
+    _id: "a1b2c3d4e5f6e7",
     imgSrc: "https://assetpoint.netlify.app/images/book-1.jpg",
     title: "The Psychology of Money",
     author: "by Morgan Housel",

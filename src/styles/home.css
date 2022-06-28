@@ -104,15 +104,6 @@ footer p.copyright {
 
 /* Media queries */
 @media screen and (max-width: 800px) {
-  nav.main-nav .search-bar {
-    order: 1;
-    flex-grow: 1;
-  }
-
-  nav.main-nav ul.right-nav span.material-icons {
-    padding-left: 1rem;
-  }
-
   .hero-btn,
   .weekly-book-txt {
     text-align: center;

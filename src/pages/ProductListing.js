@@ -5,6 +5,7 @@ import {
   ProductCard,
   ProductFilters,
   Loader,
+  SearchBar,
 } from "../components/allComponents";
 import axios from "axios";
 import {useEffect, useState} from "react";
@@ -49,7 +50,9 @@ const ProductListing = () => {
   return (
     <>
       <NavMenu />
-
+      <div className="search-bar-ctn pd-md">
+        <SearchBar />
+      </div>
       <section className="product-list-ctn">
         {/* <!-- filters --> */}
         <ProductFilters filterBtn={filterBtn} />

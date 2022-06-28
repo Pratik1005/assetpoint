@@ -11,6 +11,9 @@ import {Profile} from "./Profile";
 import {Setting} from "./Setting";
 import {Address} from "./Address";
 import {AddressForm} from "./AddressForm";
+import {RequiresAuth} from "./RequiresAuth";
+import {MobileMenu} from "./MobileMenu";
+import {SearchBar} from "./SearchBar";
 
 export {
   FeaturedCategory,
@@ -26,4 +29,7 @@ export {
   Setting,
   Address,
   AddressForm,
+  RequiresAuth,
+  MobileMenu,
+  SearchBar,
 };

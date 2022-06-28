@@ -28,7 +28,10 @@ const AddressForm = ({
 
   return (
     <section className="address-modal">
-      <form className="br-md form-space" onSubmit={handleAddressForm}>
+      <form
+        className="br-md form-space address-form"
+        onSubmit={handleAddressForm}
+      >
         <h3 className="text-center mg-bottom-md">Address</h3>
         <div className="form-control">
           <label htmlFor="country" className="fw-bold">

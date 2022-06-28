@@ -10,22 +10,52 @@ import {
   SingleProduct,
   PageNotFound,
   UserProfile,
+  Checkout,
 } from "../pages/allPages";
-import Mockman from "mockman-js";
+import {RequiresAuth} from "../components/RequiresAuth";
 
 const MenuRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/" element={<Home />} />
       <Route path="/products" element={<ProductListing />} />
-      <Route path="/mock" element={<Mockman />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/wishlist" element={<WishList />} />
       <Route path="/product/:productId" element={<SingleProduct />} />
-      <Route path="/account" element={<UserProfile />} />
+      <Route
+        path="/cart"
+        element={
+          <RequiresAuth>
+            <Cart />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/wishlist"
+        element={
+          <RequiresAuth>
+            <WishList />
+          </RequiresAuth>
+        }
+      />
+
+      <Route
+        path="/account"
+        element={
+          <RequiresAuth>
+            <UserProfile />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <RequiresAuth>
+            <Checkout />
+          </RequiresAuth>
+        }
+      />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

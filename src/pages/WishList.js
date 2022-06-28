@@ -1,17 +1,17 @@
 import "../styles/wish-list.css";
 import {NavMenu, Footer, WishlistedCard} from "../components/allComponents";
-import {useWishList} from "../context/wishlist-context";
+import {useUser} from "../context";
 
 const WishList = () => {
-  const {wishListState} = useWishList();
+  const {userState} = useUser();
   return (
     <>
       <NavMenu />
       <section className="app-ctn">
         <h2 className="text-center">Wish List</h2>
-        {wishListState.wishListItems.length > 0 ? (
+        {userState.wishlist.length > 0 ? (
           <div className="wishlist-ctn">
-            {wishListState.wishListItems.map((item) => (
+            {userState.wishlist.map((item) => (
               <div className="card-vertical-ctn" key={item.id}>
                 <WishlistedCard cardData={item} />
               </div>

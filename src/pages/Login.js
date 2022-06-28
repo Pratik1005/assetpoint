@@ -1,15 +1,22 @@
 import "../styles/auth.css";
 import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
+import {useAuth} from "../context";
 import {NavMenu, Footer} from "../components/allComponents";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 const Login = () => {
+  const {setAuth} = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
     error: false,
   });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleEmail = (e) => {
     setLoginData((prev) => ({...prev, email: e.target.value, error: false}));
@@ -19,27 +26,41 @@ const Login = () => {
     setLoginData((prev) => ({...prev, password: e.target.value, error: false}));
   };
 
-  const handleLogin = (e) => {
+  const handleTogglePassword = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (
-      loginData.email === "test@gmail.com" &&
-      loginData.password === "test@123"
-    ) {
-      navigate("/account");
-    } else {
-      setLoginData({email: "", password: "", error: true});
+    try {
+      const response = await axios.post("/api/auth/login", {
+        email: loginData.email,
+        password: loginData.password,
+      });
+      localStorage.setItem("token", response.data.encodedToken);
+      localStorage.setItem("userData", JSON.stringify(response.data.foundUser));
+      setAuth({token: response.data.encodedToken, isLoggedIn: true});
+      toast.success("You have logged in");
+      navigate(from, {replace: true});
+    } catch (err) {
+      console.error("login", err);
+      toast.error(err.message);
     }
   };
 
   const handleTestLogin = (e) => {
     e.preventDefault();
-    setLoginData({email: "test@gmail.com", password: "test@123", error: false});
+    setLoginData({
+      email: "pratikdevle@gmail.com",
+      password: "pratik@123456",
+      error: false,
+    });
   };
   return (
     <>
       <NavMenu />
       <section className="app-ctn">
-        <form className="br-md">
+        <form className="br-md" onSubmit={handleLogin}>
           <h2 className="text-center mg-bottom-md">Login</h2>
           {loginData.error && (
             <p className="error-msg form-control">Invalid credentials</p>
@@ -53,6 +74,7 @@ const Login = () => {
               name="email"
               id="email"
               placeholder="name@gmail.com"
+              required
               value={loginData.email}
               onChange={(e) => handleEmail(e)}
             />
@@ -62,13 +84,20 @@ const Login = () => {
               Password
             </label>
             <input
-              type="password"
+              type={isPasswordVisible ? "text" : "password"}
               name="password"
               id="password"
+              required
               value={loginData.password}
               onChange={(e) => handlePassword(e)}
               placeholder="&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;"
             />
+            <span
+              className="material-icons password-eye"
+              onClick={handleTogglePassword}
+            >
+              {isPasswordVisible ? "visibility_off" : "visibility"}
+            </span>
           </div>
           <div className="form-control">
             <input type="checkbox" id="remember-me" name="checkbox" />
@@ -80,9 +109,7 @@ const Login = () => {
             </Link>
           </div>
           <div className="form-control">
-            <button className="btn btn-primary" onClick={(e) => handleLogin(e)}>
-              Login
-            </button>
+            <button className="btn btn-primary">Login</button>
           </div>
           <div className="form-control">
             <button

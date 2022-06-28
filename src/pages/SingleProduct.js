@@ -1,18 +1,18 @@
 import "../styles/single-product.css";
 import axios from "axios";
-import {toast} from "react-toastify";
 import {useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {NavMenu, Footer, Loader} from "../components/allComponents";
-import {useCart, useWishList} from "../context/allContext";
+import {useUser, useAuth} from "../context";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
+import {addToCart, addToWishlist, removeFromWishlist} from "../services";
 
 const SingleProduct = () => {
   const params = useParams();
   const [loader, setLoader] = useState(true);
   const [product, setProduct] = useState({});
-  const {cartDispatch} = useCart();
-  const {wishListDispatch} = useWishList();
+  const {userState, userDispatch} = useUser();
+  const {auth} = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -26,25 +26,21 @@ const SingleProduct = () => {
     })();
   }, [params.productId]);
 
-  let currentItemInCart = product && isProductInCart(product._id);
+  let currentItemInCart =
+    product && isProductInCart(product._id, userState.cart);
 
   const handleAddToCart = () => {
-    toast.success("Added to cart");
-    currentItemInCart
-      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: product})
-      : cartDispatch({type: "ADD_TO_CART", payload: product});
+    addToCart(product, auth.token, userDispatch);
   };
 
   let addedToWishList = product && isProductInWishList(product._id);
 
   const handleAddToWishList = () => {
-    if (addedToWishList) {
-      toast.success("Removed from wishlist");
-      wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: product});
-    } else {
-      toast.success("Added to wishlist");
-      wishListDispatch({type: "ADD_TO_WISHLIST", payload: product});
-    }
+    addToWishlist(product, auth.token, userDispatch);
+  };
+
+  const handleRemoveFromWishList = () => {
+    removeFromWishlist(product._id, auth.token, userDispatch);
   };
 
   return product ? (
@@ -88,7 +84,7 @@ const SingleProduct = () => {
               {addedToWishList ? (
                 <button
                   className="btn btn-icon-text-outline"
-                  onClick={handleAddToWishList}
+                  onClick={handleRemoveFromWishList}
                 >
                   <span className="material-icons wishlist">favorite</span>
                   Added to wishlist

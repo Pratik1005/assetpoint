@@ -1,102 +1,73 @@
-import axios from "axios";
-import {useState, useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {useCart, useWishList} from "../context/allContext";
+import {Link} from "react-router-dom";
+import {useUser, useAuth} from "../context";
+import {USER_ACTIONS} from "../reducer/constant";
+import {MobileMenu} from "./MobileMenu";
+import {SearchBar} from "./SearchBar";
 
 const NavMenu = () => {
-  const navigate = useNavigate();
-  const {wishListState} = useWishList();
-  const {cartState} = useCart();
-  const [search, setSearch] = useState("");
-  const [products, setProducts] = useState([]);
-  const [filterProducts, setFilterProducts] = useState([]);
+  const {userState, userDispatch} = useUser();
+  const {auth} = useAuth();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("/api/products");
-        setProducts(response.data.products);
-      } catch (err) {
-        console.error("search bar", err);
-      }
-    })();
-  }, []);
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-    setFilterProducts(
-      products.filter(
-        (item) =>
-          item.title.toLowerCase().includes(search.toLowerCase()) &&
-          !item.isOutOfStock
-      )
-    );
+  const handleToggleMenu = () => {
+    userDispatch({type: USER_ACTIONS.TOGGLE_MOBILE_MENU});
   };
   return (
-    <header>
-      <div className="header-container">
-        <nav className="main-nav">
-          <Link to="/">
-            <h1 className="logo">AssetPoint</h1>
-          </Link>
-          <div className="search-bar br-sm">
-            <span className="material-icons">search</span>
-            <input
-              type="text"
-              placeholder="search"
-              value={search}
-              onChange={(e) => handleSearch(e)}
-            />
-            {search.length > 0 && (
-              <div className="search-result-ctn br-sm pd-sm">
-                {filterProducts.length > 0 ? (
-                  filterProducts.map((item) => (
-                    <Link to={`/product/${item._id}`} key={item._id}>
-                      <div className="search-item pd-sm">
-                        <img src={item.imgSrc} alt={item.title} />
-                        <div className="product-detail">
-                          <h4 className="pd-bottom-lg">{item.title}</h4>
-                          <p>{item.author}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))
-                ) : (
-                  <p>No products found</p>
-                )}
-              </div>
-            )}
+    <>
+      <header>
+        <div className="header-container">
+          <div className="mobile-header">
+            <span
+              className="material-icons mobile-menu-icon"
+              onClick={handleToggleMenu}
+            >
+              menu
+            </span>
+            <Link to="/">
+              <h1 className="mobile-logo">AssetPoint</h1>
+            </Link>
           </div>
-          <ul className="right-nav">
-            <li>
-              <Link to="/login" className="link-primary">
-                <span class="material-icons profile">account_circle</span>
-              </Link>
-            </li>
-            <li>
-              <div className="badge-ctn mg-sm">
-                <Link to="/wishlist">
-                  <span className="material-icons">favorite_border</span>
-                  <span className="badge-icon br-full badge-count fw-bold">
-                    {wishListState.wishListItems.length}
-                  </span>
+          <nav className="main-nav">
+            <Link to="/">
+              <h1 className="logo">AssetPoint</h1>
+            </Link>
+            <SearchBar />
+            <ul className="right-nav">
+              <li>
+                <Link to="/products" className="link-primary fw-bold shop">
+                  Shop
                 </Link>
-              </div>
-            </li>
-            <li>
-              <div className="badge-ctn mg-sm">
-                <Link to="/cart">
-                  <span className="material-icons">shopping_cart</span>
-                  <span className="badge-icon br-full badge-count badge-count fw-bold">
-                    {cartState.totalItems}
-                  </span>
+              </li>
+              <li>
+                <Link to="/account" className="link-primary">
+                  <span className="material-icons profile">account_circle</span>
                 </Link>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+              </li>
+              <li>
+                <div className="badge-ctn mg-sm">
+                  <Link to="/wishlist">
+                    <span className="material-icons">favorite_border</span>
+                    <span className="badge-icon br-full badge-count fw-bold">
+                      {auth.isLoggedIn ? userState.wishlist.length : "0"}
+                    </span>
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="badge-ctn mg-sm">
+                  <Link to="/cart">
+                    <span className="material-icons">shopping_cart</span>
+                    <span className="badge-icon br-full badge-count badge-count fw-bold">
+                      {auth.isLoggedIn ? userState.totalItems : "0"}
+                    </span>
+                  </Link>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <MobileMenu />
+    </>
   );
 };
 

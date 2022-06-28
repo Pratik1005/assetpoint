@@ -61,7 +61,9 @@ p.coupon span.material-icons {
   font-size: 1.25rem;
 }
 
-.price-ctn .order-btn a {
+.price-ctn .order-btn a,
+.price-ctn,
+.oreder-btn button {
   display: block;
   font-size: 1.25rem;
 }

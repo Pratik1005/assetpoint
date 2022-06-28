@@ -1,32 +1,35 @@
-import {Link} from "react-router-dom";
-import {toast} from "react-toastify";
-import {useCart, useWishList} from "../context/allContext";
+import {Link, useNavigate} from "react-router-dom";
+import {useAuth, useUser} from "../context";
+import {addToWishlist, removeFromWishlist, addToCart} from "../services";
 import {isProductInCart, isProductInWishList} from "../utils/allUtils";
 
 const ProductCard = ({productData}) => {
-  const {wishListDispatch} = useWishList();
-  const {cartDispatch} = useCart();
+  const {auth} = useAuth();
+  const {userDispatch, userState} = useUser();
+  const navigate = useNavigate();
 
-  let currentItemInCart = isProductInCart(productData._id);
+  let currentItemInCart = isProductInCart(productData._id, userState.cart);
 
   const handleAddToCart = () => {
-    toast.success("Added to cart");
-    currentItemInCart
-      ? cartDispatch({type: "INCREASE_PRODUCT_COUNT", payload: productData})
-      : cartDispatch({type: "ADD_TO_CART", payload: productData});
+    if (auth.isLoggedIn) {
+      addToCart(productData, auth.token, userDispatch);
+    } else {
+      navigate("/login");
+    }
   };
 
   let addedToWishList = isProductInWishList(productData._id);
 
   const handleAddToWishList = () => {
-    if (addedToWishList) {
-      toast.success("Removed from wishlist");
-      wishListDispatch({type: "REMOVE_FROM_WISHLIST", payload: productData});
+    if (auth.isLoggedIn) {
+      if (addedToWishList) {
+        removeFromWishlist(productData._id, auth.token, userDispatch);
+      } else {
+        addToWishlist(productData, auth.token, userDispatch);
+      }
     } else {
-      toast.success("Added to wishlist");
-      wishListDispatch({type: "ADD_TO_WISHLIST", payload: productData});
+      navigate("/login");
     }
-    addedToWishList = !addedToWishList;
   };
   return (
     <>

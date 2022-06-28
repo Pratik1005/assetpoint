@@ -86,12 +86,12 @@ const Home = () => {
               happiness
             </h2>
             <h3 className="weekly-book-author">by Morgan Housel</h3>
-            <a
-              href="./pages/single-product-page/single-product.html"
+            <Link
+              to="/product/a1b2c3d4e5f6e7"
               className="btn btn-primary cta-btn"
             >
               Read More
-            </a>
+            </Link>
           </div>
         </div>
       </section>
