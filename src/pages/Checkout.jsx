@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {USER_ACTIONS} from "../reducer/constant";
 
 const Checkout = () => {
-  const {userState} = useUser();
+  const {userState, userDispatch} = useUser();
   const {totalItems, totalPrice} = userState;
   let discount = 30 * totalItems;
   let deliveryCharge = totalPrice >= 500 ? 0 : 100;
