@@ -1,6 +1,6 @@
 import "../styles/single-product.css";
 import axios from "axios";
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {NavMenu, Footer, Loader} from "../components/allComponents";
 import {useUser, useAuth} from "../context";
@@ -13,6 +13,7 @@ const SingleProduct = () => {
   const [product, setProduct] = useState({});
   const {userState, userDispatch} = useUser();
   const {auth} = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -30,13 +31,21 @@ const SingleProduct = () => {
     product && isProductInCart(product._id, userState.cart);
 
   const handleAddToCart = () => {
-    addToCart(product, auth.token, userDispatch);
+    if (auth.isLoggedIn) {
+      addToCart(product, auth.token, userDispatch);
+    } else {
+      navigate("/login");
+    }
   };
 
   let addedToWishList = product && isProductInWishList(product._id);
 
   const handleAddToWishList = () => {
-    addToWishlist(product, auth.token, userDispatch);
+    if (auth.isLoggedIn) {
+      addToWishlist(product, auth.token, userDispatch);
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleRemoveFromWishList = () => {
