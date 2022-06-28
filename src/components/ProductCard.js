@@ -11,7 +11,11 @@ const ProductCard = ({productData}) => {
   let currentItemInCart = isProductInCart(productData._id, userState.cart);
 
   const handleAddToCart = () => {
-    addToCart(productData, auth.token, userDispatch);
+    if (auth.isLoggedIn) {
+      addToCart(productData, auth.token, userDispatch);
+    } else {
+      navigate("/login");
+    }
   };
 
   let addedToWishList = isProductInWishList(productData._id);
