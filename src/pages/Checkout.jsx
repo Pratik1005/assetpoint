@@ -50,7 +50,6 @@ const Checkout = () => {
           userDispatch({type: USER_ACTIONS.PROCESS_ORDER});
           userDispatch({type: USER_ACTIONS.CLEAR_CART});
           toast.success("The payment was successfull");
-          console.log(response);
           navigate(`/order/${response.razorpay_payment_id}`);
         },
         prefill: {
