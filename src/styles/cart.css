@@ -106,6 +106,24 @@ p.coupon span.material-icons {
   margin: 0.625rem;
 }
 
+/* order */
+.order-ctn {
+  border: 1px solid var(--input-border);
+}
+
+.order-address {
+  font-size: 1rem;
+}
+
+.card-horizontal-ctn .order-img {
+  width: 8rem;
+  height: 12rem;
+}
+
+.order-qty {
+  padding: 0.625rem 0.625rem 0;
+}
+
 /* Media queries */
 @media screen and (max-width: 800px) {
   .cart-mang-ctn {

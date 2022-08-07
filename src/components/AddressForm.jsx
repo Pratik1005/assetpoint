@@ -26,6 +26,20 @@ const AddressForm = ({
     setIsEditMode((prev) => !prev);
   };
 
+  const handleDummyData = () => {
+    setAddressData({
+      name: "Jhon Doe",
+      flatName: "803/A, Nirmal House",
+      area: "Sector 21",
+      landMark: "ITC",
+      city: "Mumbai",
+      pinCode: "400012",
+      state: "Maharashtra",
+      country: "India",
+      contact: "9876543210",
+    });
+  };
+
   return (
     <section className="address-modal">
       <form
@@ -192,6 +206,15 @@ const AddressForm = ({
             onClick={handleCancelAddress}
           >
             Cancel
+          </button>
+        </div>
+        <div className="form-control">
+          <button
+            type="button"
+            className="btn btn-icon-text-outline"
+            onClick={handleDummyData}
+          >
+            Fill dummy data
           </button>
         </div>
       </form>

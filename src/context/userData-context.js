@@ -9,6 +9,7 @@ const initialState = {
   totalItems: 0,
   totalPrice: 0,
   isMenuVisible: false,
+  order: [],
 };
 
 const UserProvider = ({children}) => {

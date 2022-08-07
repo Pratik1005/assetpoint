@@ -116,7 +116,7 @@ const Login = () => {
               className="btn btn-primary-outline"
               onClick={(e) => handleTestLogin(e)}
             >
-              Login with test credentials
+              Fill test credentials
             </button>
           </div>
           <div className="account-toggle fw-bold">

@@ -34,10 +34,10 @@ const Signup = () => {
     if (signUpData.password === signUpData.confirmPassword) {
       try {
         const response = await axios.post("/api/auth/signup", {
-          firstname: signUpData.firstName,
-          lastname: signUpData.lastName,
           email: signUpData.email,
           password: signUpData.password,
+          firstname: signUpData.firstName,
+          lastname: signUpData.lastName,
         });
         const userData = {
           firstName: signUpData.firstName,
@@ -46,7 +46,7 @@ const Signup = () => {
         };
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("userData", JSON.stringify(userData));
-        setAuth({token: response.data.encodedtoken, isLoggedIn: true});
+        setAuth({token: response.data.encodedToken, isLoggedIn: true});
         toast.success("You have signed in");
         navigate("/");
       } catch (err) {
@@ -56,6 +56,16 @@ const Signup = () => {
     } else {
       toast.error("Passwords must be same");
     }
+  };
+
+  const handleTestSignup = () => {
+    setSignUpData({
+      firstName: "Jhon",
+      lastName: "Doe",
+      email: "jhondoe@gmail.com",
+      password: "jhon@123",
+      confirmPassword: "jhon@123",
+    });
   };
   return (
     <>
@@ -153,6 +163,15 @@ const Signup = () => {
           </div>
           <div className="form-control">
             <button className="btn btn-primary">Create New Account</button>
+          </div>
+          <div className="form-control">
+            <button
+              type="button"
+              className="btn btn-primary-outline"
+              onClick={handleTestSignup}
+            >
+              Fill test credentials
+            </button>
           </div>
           <div className="account-toggle fw-bold">
             <Link to="/login">

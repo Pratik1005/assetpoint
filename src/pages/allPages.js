@@ -9,6 +9,7 @@ import {SingleProduct} from "./SingleProduct";
 import {PageNotFound} from "./404";
 import {UserProfile} from "./UserProfile";
 import {Checkout} from "./Checkout";
+import {Order} from "./Order";
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   PageNotFound,
   UserProfile,
   Checkout,
+  Order,
 };
