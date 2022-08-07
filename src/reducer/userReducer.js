@@ -38,8 +38,18 @@ const userReducer = (state, action) => {
         totalItems: state.totalItems - 1,
         totalPrice: state.totalPrice - action.payload.price,
       };
+    case USER_ACTIONS.PROCESS_ORDER:
+      return {
+        ...state,
+        order: [...state.cart],
+      };
     case USER_ACTIONS.CLEAR_CART:
-      return {...state, cart: [], totalItems: 0, totalPrice: 0};
+      return {
+        ...state,
+        cart: [],
+        totalItems: 0,
+        // totalPrice: 0,
+      };
     case USER_ACTIONS.TOGGLE_MOBILE_MENU:
       return {...state, isMenuVisible: !state.isMenuVisible};
     case USER_ACTIONS.HIDE_MOBILE_MENU:

@@ -57,7 +57,7 @@ const NavMenu = () => {
                   <Link to="/cart">
                     <span className="material-icons">shopping_cart</span>
                     <span className="badge-icon br-full badge-count badge-count fw-bold">
-                      {auth.isLoggedIn ? userState.totalItems : "0"}
+                      {auth.isLoggedIn ? userState.cart.length : "0"}
                     </span>
                   </Link>
                 </div>

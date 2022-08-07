@@ -8,7 +8,6 @@ const Cart = () => {
   const {cart, totalItems, totalPrice} = userState;
   let discount = 30 * totalItems;
   let deliveryCharge = totalPrice >= 500 ? 0 : 100;
-  let couponDiscount = 50;
 
   return (
     <>
@@ -32,21 +31,15 @@ const Cart = () => {
               </div>
               <div className="price-row">
                 <p>Discount</p>
-                <p>₹{discount}</p>
+                <p>- ₹{discount}</p>
               </div>
               <div className="price-row">
                 <p>Delivery charges</p>
                 <p>₹{deliveryCharge}</p>
               </div>
-              <div className="price-row">
-                <p>Coupon discount</p>
-                <p>₹{couponDiscount}</p>
-              </div>
               <div className="price-row text-border fw-bold">
                 <p>Total Price</p>
-                <p>
-                  ₹{totalPrice + deliveryCharge - discount - couponDiscount}
-                </p>
+                <p>₹{totalPrice + deliveryCharge - discount}</p>
               </div>
               <div className="order-btn">
                 <Link to="/checkout" className="btn btn-primary text-center">

@@ -1,6 +1,6 @@
 import "../styles/checkout.css";
-import {useState} from "react";
 import {useUser} from "../context";
+import {useAddress} from "../context/address-context";
 import {NavMenu, Footer, Address} from "../components/allComponents";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
@@ -8,12 +8,15 @@ import {USER_ACTIONS} from "../reducer/constant";
 
 const Checkout = () => {
   const {userState, userDispatch} = useUser();
+  const {addressState} = useAddress();
   const {totalItems, totalPrice} = userState;
   let discount = 30 * totalItems;
   let deliveryCharge = totalPrice >= 500 ? 0 : 100;
-  let couponDiscount = 50;
-  const [isAddressSelected, setIsAddressSelected] = useState(false);
   const navigate = useNavigate();
+
+  const isDeliverySelected = addressState.addressList.some(
+    (address) => address.isDeliveryAddress === true
+  );
 
   const loadScript = () => {
     return new Promise((resolve) => {
@@ -30,7 +33,7 @@ const Checkout = () => {
   };
 
   const handlePayment = async () => {
-    if (isAddressSelected) {
+    if (isDeliverySelected) {
       const res = await loadScript();
       if (!res) {
         toast.error("Razorpay SDk failed to load");
@@ -38,15 +41,17 @@ const Checkout = () => {
 
       const options = {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
-        amount: (totalPrice + deliveryCharge - discount - couponDiscount) * 100,
+        amount: (totalPrice + deliveryCharge - discount) * 100,
         currency: "INR",
         name: "Asset Point",
-        description: "Test Transaction",
+        description: "Thank you for shopping with us",
         image: "",
         handler: async (response) => {
+          userDispatch({type: USER_ACTIONS.PROCESS_ORDER});
           userDispatch({type: USER_ACTIONS.CLEAR_CART});
           toast.success("The payment was successfull");
-          navigate("/");
+          console.log(response);
+          navigate(`/order/${response.razorpay_payment_id}`);
         },
         prefill: {
           name: "Pratik Devle",
@@ -76,7 +81,7 @@ const Checkout = () => {
         {userState.cart.length > 0 ? (
           <div className="cart-mang-ctn">
             <div className="address-ctn pd-md">
-              <Address setIsAddressSelected={setIsAddressSelected} />
+              <Address />
             </div>
             <div className="price-ctn br-sm">
               <h3 className="text-center text-border">Price Details</h3>
@@ -86,21 +91,15 @@ const Checkout = () => {
               </div>
               <div className="price-row">
                 <p>Discount</p>
-                <p>₹{discount}</p>
+                <p>- ₹{discount}</p>
               </div>
               <div className="price-row">
                 <p>Delivery charges</p>
                 <p>₹{deliveryCharge}</p>
               </div>
-              <div className="price-row">
-                <p>Coupon discount</p>
-                <p>₹{couponDiscount}</p>
-              </div>
               <div className="price-row text-border fw-bold">
                 <p>Total Price</p>
-                <p>
-                  ₹{totalPrice + deliveryCharge - discount - couponDiscount}
-                </p>
+                <p>₹{totalPrice + deliveryCharge - discount}</p>
               </div>
               <div className="order-btn">
                 <button

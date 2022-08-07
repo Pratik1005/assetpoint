@@ -11,6 +11,7 @@ import {
   PageNotFound,
   UserProfile,
   Checkout,
+  Order,
 } from "../pages/allPages";
 import {RequiresAuth} from "../components/RequiresAuth";
 
@@ -53,6 +54,14 @@ const MenuRoutes = () => {
         element={
           <RequiresAuth>
             <Checkout />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/order/:orderId"
+        element={
+          <RequiresAuth>
+            <Order />
           </RequiresAuth>
         }
       />

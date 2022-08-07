@@ -2,8 +2,9 @@ import {useState} from "react";
 import {useLocation} from "react-router-dom";
 import {AddressForm} from "./AddressForm";
 import {useAddress} from "../context/address-context";
+import {USER_ACTIONS} from "../reducer/constant";
 
-const Address = ({setIsAddressSelected}) => {
+const Address = () => {
   const {addressState, addressDispatch} = useAddress();
   const {initialAddressData, addressList, isAddAddress} = addressState;
   const [addressData, setAddressData] = useState({...initialAddressData});
@@ -45,7 +46,12 @@ const Address = ({setIsAddressSelected}) => {
                   type="radio"
                   id={item.name}
                   name="address"
-                  onChange={() => setIsAddressSelected(true)}
+                  onChange={() =>
+                    addressDispatch({
+                      type: USER_ACTIONS.SELECT_DELIVERY_ADDRESS,
+                      payload: item.id,
+                    })
+                  }
                 />
                 <label htmlFor={item.name} className="para-md address-radio">
                   {item.name}
