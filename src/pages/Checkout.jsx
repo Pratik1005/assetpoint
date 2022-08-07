@@ -1,13 +1,15 @@
 import "../styles/checkout.css";
-import {useUser} from "../context";
+import {useUser, useAuth} from "../context";
 import {useAddress} from "../context/address-context";
 import {NavMenu, Footer, Address} from "../components/allComponents";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {USER_ACTIONS} from "../reducer/constant";
+import {clearCart} from "../services";
 
 const Checkout = () => {
   const {userState, userDispatch} = useUser();
+  const {auth} = useAuth();
   const {addressState} = useAddress();
   const {totalItems, totalPrice} = userState;
   let discount = 30 * totalItems;
@@ -47,6 +49,7 @@ const Checkout = () => {
         description: "Thank you for shopping with us",
         image: "",
         handler: async (response) => {
+          clearCart(auth.token);
           userDispatch({type: USER_ACTIONS.PROCESS_ORDER});
           userDispatch({type: USER_ACTIONS.CLEAR_CART});
           toast.success("The payment was successfull");

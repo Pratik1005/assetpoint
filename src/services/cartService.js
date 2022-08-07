@@ -78,4 +78,21 @@ const decrementProduct = async (product, token, userDispatch) => {
   }
 };
 
-export {addToCart, removeFromCart, incrementProduct, decrementProduct};
+const clearCart = async (token) => {
+  try {
+    const response = await axios.delete("/api/user/cart", {
+      headers: {authorization: token},
+    });
+  } catch (err) {
+    console.error("Clear cart", err);
+    toast.error(err.message);
+  }
+};
+
+export {
+  addToCart,
+  removeFromCart,
+  incrementProduct,
+  decrementProduct,
+  clearCart,
+};

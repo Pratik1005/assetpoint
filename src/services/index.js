@@ -4,4 +4,5 @@ export {
   removeFromCart,
   incrementProduct,
   decrementProduct,
+  clearCart,
 } from "./cartService";

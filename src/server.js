@@ -1,4 +1,4 @@
-import { Server, Model, RestSerializer } from "miragejs";
+import {Server, Model, RestSerializer} from "miragejs";
 import {
   loginHandler,
   signupHandler,
@@ -8,6 +8,7 @@ import {
   getCartItemsHandler,
   removeItemFromCartHandler,
   updateCartItemHandler,
+  removeAllItemsFromCartHandler,
 } from "./backend/controllers/CartController";
 import {
   getAllCategoriesHandler,
@@ -22,11 +23,11 @@ import {
   getWishlistItemsHandler,
   removeItemFromWishlistHandler,
 } from "./backend/controllers/WishlistController";
-import { categories } from "./backend/db/categories";
-import { products } from "./backend/db/products";
-import { users } from "./backend/db/users";
+import {categories} from "./backend/db/categories";
+import {products} from "./backend/db/products";
+import {users} from "./backend/db/users";
 
-export function makeServer({ environment = "development" } = {}) {
+export function makeServer({environment = "development"} = {}) {
   return new Server({
     serializers: {
       application: RestSerializer,
@@ -45,14 +46,14 @@ export function makeServer({ environment = "development" } = {}) {
       // disballing console logs from Mirage
       server.logging = false;
       products.forEach((item) => {
-        server.create("product", { ...item });
+        server.create("product", {...item});
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [] })
+        server.create("user", {...item, cart: [], wishlist: []})
       );
 
-      categories.forEach((item) => server.create("category", { ...item }));
+      categories.forEach((item) => server.create("category", {...item}));
     },
 
     routes() {
@@ -77,6 +78,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/cart/:productId",
         removeItemFromCartHandler.bind(this)
       );
+      this.delete("/user/cart", removeAllItemsFromCartHandler.bind(this));
 
       // wishlist routes (private)
       this.get("/user/wishlist", getWishlistItemsHandler.bind(this));
