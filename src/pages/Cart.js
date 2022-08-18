@@ -1,13 +1,22 @@
 import "../styles/cart.css";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {NavMenu, Footer, CartProductCard} from "../components/allComponents";
 import {useUser} from "../context";
+import {USER_ACTIONS} from "../reducer/constant";
 
 const Cart = () => {
-  const {userState} = useUser();
+  const {userState, userDispatch} = useUser();
   const {cart, totalItems, totalPrice} = userState;
+  const navigate = useNavigate();
+
   let discount = 30 * totalItems;
   let deliveryCharge = totalPrice >= 500 ? 0 : 100;
+  let amountPaid = totalPrice + deliveryCharge - discount;
+
+  const handleProceedToBuy = () => {
+    userDispatch({type: USER_ACTIONS.ADD_AMOUNT_TO_PAY, payload: amountPaid});
+    navigate("/checkout");
+  };
 
   return (
     <>
@@ -39,12 +48,15 @@ const Cart = () => {
               </div>
               <div className="price-row text-border fw-bold">
                 <p>Total Price</p>
-                <p>₹{totalPrice + deliveryCharge - discount}</p>
+                <p>₹{amountPaid}</p>
               </div>
               <div className="order-btn">
-                <Link to="/checkout" className="btn btn-primary text-center">
+                <button
+                  className="btn btn-primary text-center width-full"
+                  onClick={handleProceedToBuy}
+                >
                   Proceed to buy
-                </Link>
+                </button>
               </div>
             </div>
           </div>

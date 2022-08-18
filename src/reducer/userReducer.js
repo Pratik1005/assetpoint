@@ -48,12 +48,14 @@ const userReducer = (state, action) => {
         ...state,
         cart: [],
         totalItems: 0,
-        // totalPrice: 0,
+        totalPrice: 0,
       };
     case USER_ACTIONS.TOGGLE_MOBILE_MENU:
       return {...state, isMenuVisible: !state.isMenuVisible};
     case USER_ACTIONS.HIDE_MOBILE_MENU:
       return {...state, isMenuVisible: false};
+    case USER_ACTIONS.ADD_AMOUNT_TO_PAY:
+      return {...state, amountPaid: action.payload};
     default:
       return state;
   }

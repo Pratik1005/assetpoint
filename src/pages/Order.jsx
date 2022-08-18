@@ -45,7 +45,7 @@ const Order = () => {
               <div className="price-ctn br-sm">
                 <h3 className="text-center text-border">Order Details</h3>
                 <p>Payment ID: {params.orderId}</p>
-                <p>Amount paid: ₹ {userState.totalPrice}</p>
+                <p>Amount paid: ₹ {userState.amountPaid}</p>
 
                 <div>
                   <p>Delivery address:</p>
